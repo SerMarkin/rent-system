@@ -1,10 +1,10 @@
 <template>
  <v-app>
-     <v-card class="card_main">
+     <v-card class="card_main" :elevation="10">
          <h2 class="text-uppercase">Авторизация</h2>
          <v-text-field v-model="name" label="Логин"></v-text-field>
          <v-text-field v-model="pass" label="Пароль"></v-text-field>
-         <v-btn @click="alert('HELLO MY FRIEND!!!!')">Войти</v-btn>
+         <v-btn @click="checkUser()">Войти</v-btn>
      </v-card>
  </v-app>
 </template>
@@ -15,12 +15,13 @@
         data(){
             return {
                 name:'',
-                pass:''
+                pass:'',
+                k:0
             }
         },
         methods:{
-            alert(s){
-                alert(s);
+            checkUser(){
+                this.$router.push('/my')
             }
         }
     }
@@ -29,7 +30,7 @@
 <style scoped>
     .card_main{
         width: 50%;
-        margin: 25% 25% 25% 25%;
+        margin: 5% 25%;
         padding: 5% 10%;
     }
     .back{

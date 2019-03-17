@@ -5,9 +5,14 @@ import store from './store'
 import './registerServiceWorker'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+console.log(router);
+router.beforeEach((to, from, next) => {
+  console.log('Проверяем токен');
+  next()
+})
 
 new Vue({
   router,
