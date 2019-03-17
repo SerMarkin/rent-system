@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="text-align:righ">
         <h1>This is my orders page</h1>
         
     </div>

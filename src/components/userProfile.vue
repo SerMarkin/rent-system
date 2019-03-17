@@ -5,6 +5,7 @@
         <v-text-field v-model="surname" label="Фамилия"></v-text-field>
         <v-text-field v-model="lastname" label="Отчество"></v-text-field>
         <v-text-field v-model="email" label="Электронная почта" readonly></v-text-field>
+        <v-btn @click="saveChages">Сохранить изменения</v-btn>
         <h2>Безопасность</h2>
         <v-text-field v-model="oldPass" label="Старый пароль" type="password"></v-text-field>
         <v-text-field v-model="newPass" label="Новый пароль" type="password"></v-text-field>
@@ -28,6 +29,9 @@ export default {
     },
     methods:{
         changePass(){
+            
+        },
+        saveChages(){
             
         }
     }
