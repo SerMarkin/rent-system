@@ -7,10 +7,6 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueLocalStorage from 'vue-localstorage'
 Vue.use(VueLocalStorage)
-Vue.use(VueLocalStorage, {
-  name: 'ls',
-  bind: true //created computed members from your variable declarations
-})
 Vue.use(Vuetify);
 
 Vue.config.productionTip = false;

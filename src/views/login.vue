@@ -34,7 +34,7 @@
             checkUser(){
                 if(this.$refs.logForm.validate()){
                     console.log('Отправляем логин и пароль на сервак и получаем ответ')
-                    this.$localStorage.token='qjwdjqoiwdjqwiojd'
+                    this.$localStorage.set('token','asdasdasd')
                     this.$router.push('/my')
                 }
 
