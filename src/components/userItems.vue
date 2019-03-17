@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-app>
         <h1 style="text-align:center">This is my items page</h1>
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
@@ -10,30 +10,32 @@
             <span class="headline">Режим добавления</span>
           </v-card-title>
           <v-card-text>
-            <v-container grid-list-md>
-              <v-layout wrap>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field label="Название*" required></v-text-field>
-                 </v-flex>
-                <v-flex xs12 sm6 md4>
-                  <v-text-field label="Изображение*" required></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 d-flex>
-                    <v-text-field label="Категория*" required></v-text-field>
-                </v-flex>
-                    
-                  
-                <v-flex xs12 sm6 md4>
-                  <v-text-field label="Описание*" required></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-container>
+                <v-form ref="addItem">
+                  <v-text-field v-model="name" label="Название*" :rules="[rules.required]"></v-text-field>
+                    <h4>Загрузить фото</h4>
+                    <input type="file" accept="image/jpeg,image/png" class="input_file"><br>
+                    <v-menu top left>
+
+                            <v-text-field slot="activator" v-model="category" label="Категория*" :rules="[rules.required]" readonly></v-text-field>
+                        <v-list style="height: 200px;">
+                            <v-list-tile
+                                    v-for="(item, index) in categories"
+                                    :key="index"
+                                    @click="category = item"
+                                    style="background: white"
+                            >
+                                <v-list-tile-title>{{ item }}</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
+                  <v-textarea v-model="description" label="Описание*" :rules="[rules.required]"></v-textarea>
+                </v-form>
             <small>*indicates required field</small>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click="dialog = false; addItem()">Add</v-btn>
+            <v-btn color="blue darken-1" flat @click="addItem()">Add</v-btn>
           </v-card-actions>
         </v-card>
         </v-dialog>
@@ -44,7 +46,7 @@
             </v-flex>
         </v-layout>
 
-    </div>
+    </v-app>
 </template>
 
 
@@ -56,6 +58,10 @@ export default {
     data(){
         return{
         dialog:false,
+            e1:'',
+            name:'',
+            category:'',
+            description:'',
         items:[
         {name:'Name0',descr:'lorem',price:'100'},
         {name:'Name1',descr:'lorem',price:'100'},
@@ -67,12 +73,16 @@ export default {
         {name:'Name7',descr:'lorem',price:'100'},
         {name:'Name8',descr:'lorem',price:'100'},
         {name:'Name9',descr:'lorem',price:'100'},
-      ]
+      ],
+            rules:{required:(val)=>!!val || 'Заполните поле'},
+            categories:['Спорт','Бытовые приборы','Родственники','Спорт1','Бытовые приборы1','Родственники1','Спорт2','Бытовые приборы2','Родственники2','Спорт3','Бытовые приборы3','Родственники3','Спорт4','Бытовые приборы4','4Родственники',]
         }
     },
     methods:{
         addItem(){
-
+            if(this.$refs.addItem.validate()){
+                console.log('true')
+            }
         }
     },
     components:{
@@ -80,3 +90,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .theme--light.v-label {
+        color: rgb(255, 0, 0);
+    }
+</style>

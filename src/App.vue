@@ -48,7 +48,7 @@ export default {
     background: rgb(46, 43, 43);
 }
   .router_page{
-    padding-top: 10%;
+    padding-top: 5%;
   }
 
 </style>

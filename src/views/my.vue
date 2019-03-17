@@ -1,23 +1,23 @@
 <template>
     <div>
         <v-tabs centered color="cyan" dark icons-and-text v-model="activeTab">
-      <v-tabs-slider color="yellow"></v-tabs-slider>  
+      <v-tabs-slider color="yellow"></v-tabs-slider>
       <v-tab >
         My profile
       </v-tab>
-  
+
       <v-tab >
         My items
       </v-tab>
-  
+
       <v-tab >
         My orders
       </v-tab>
-  
+
       <v-tab-item>
-        
+
           <userProfilez></userProfilez>
-       
+
       </v-tab-item>
       <v-tab-item>
         <userItemsz></userItemsz>
@@ -26,8 +26,8 @@
        <userOrdersz></userOrdersz>
       </v-tab-item>
     </v-tabs>
-        
-        
+
+
     </div>
 </template>
 
@@ -39,12 +39,12 @@ export default {
     name: 'myz',
     data(){
         return{
-            
+
             activeTab: 0
         }
     },
     methods:{
-        
+
     },
     components:{
         'userProfilez':userProfile,
