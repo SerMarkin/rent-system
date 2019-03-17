@@ -1,8 +1,9 @@
 <template>
-    <div style="margin:100px ">
-        <h1>This is my items page</h1>
-
-        <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
+    <div>
+        <h1 style="text-align:center">This is my items page</h1>
+        <div style="display:flex; justify-content:center">
+            <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
+        </div>
         <v-dialog v-model="dialog" max-width="600px">
         <v-card>
           <v-card-title>
@@ -36,21 +37,46 @@
           </v-card-actions>
         </v-card>
         </v-dialog>
+
+        <v-layout row wrap>
+            <v-flex pa-1 xs12 sm6  md3  v-for="(item,index) of items" :key="index" align-self-center>
+                <show-item :item="item" :showButton="false" ></show-item>
+            </v-flex>
+        </v-layout>
+
     </div>
 </template>
 
 
 <script>
+import item from '../components/item'
+
 export default {
     name:'userItems',
     data(){
         return{
-        dialog:false}
+        dialog:false,
+        items:[
+        {name:'Name0',descr:'lorem',price:'100'},
+        {name:'Name1',descr:'lorem',price:'100'},
+        {name:'Name2',descr:'lorem',price:'100'},
+        {name:'Name3',descr:'lorem',price:'100'},
+        {name:'Name4',descr:'lorem',price:'100'},
+        {name:'Name5',descr:'lorem',price:'100'},
+        {name:'Name6',descr:'lorem',price:'100'},
+        {name:'Name7',descr:'lorem',price:'100'},
+        {name:'Name8',descr:'lorem',price:'100'},
+        {name:'Name9',descr:'lorem',price:'100'},
+      ]
+        }
     },
     methods:{
         addItem(){
 
         }
+    },
+    components:{
+        'show-item':item
     }
 }
 </script>
