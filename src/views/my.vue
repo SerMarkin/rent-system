@@ -20,14 +20,10 @@
        
       </v-tab-item>
       <v-tab-item>
-        <v-card flat>
-          <v-card-text>{{ i }}</v-card-text>
-        </v-card>
+        <userItemsz></userItemsz>
       </v-tab-item>
       <v-tab-item>
-        <v-card flat>
-          <v-card-text>{{ i }}</v-card-text>
-        </v-card>
+       <userOrdersz></userOrdersz>
       </v-tab-item>
     </v-tabs>
         
