@@ -9,6 +9,7 @@
                 <v-text-field v-model="email" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
                 <v-text-field v-model="pass" label="Пароль" type="password" :rules="[rules.required]"></v-text-field>
                 <v-btn @click="regUser()">Зарегистрироватся</v-btn>
+                <a @click="$router.push('/login')">Уже есть аккаунт?</a>
             </v-form>
         </v-card>
     </v-app>
