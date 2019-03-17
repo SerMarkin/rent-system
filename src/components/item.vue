@@ -1,7 +1,7 @@
 <template>
 <v-card class="item_card">
     <v-card-title class="head">{{item.name}}</v-card-title>
-    <img src="../assets/logo.png" class="image_item"></v-img>
+    <img src="../assets/logo.png" class="image_item">
     <v-card-text class="descr_item">
     <p>{{item.descr}}</p>
     </v-card-text>
@@ -9,7 +9,7 @@
     <v-card-actions class="price_item">
         <h3>{{item.price}}Р/день </h3>
         <v-spacer></v-spacer>
-        <v-btn>Арендовать</v-btn>
+        <v-btn v-if="showButton">Арендовать</v-btn>
     </v-card-actions>
 </v-card>
 </template>
@@ -18,7 +18,8 @@
     export default {
         name: "item",
         props:{
-          item:Object
+          item:Object,
+          showButton:Boolean
         },
         data(){
             return{
