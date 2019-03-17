@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import log from './views/login.vue'
 import my from './views/my.vue';
+import reg from './views/registration.vue';
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/login',
       name: 'log',
       component: log
+    },
+    {
+      path: '/registration',
+      name: 'reg',
+      component: reg
     },
   ]
 });
