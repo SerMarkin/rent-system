@@ -42,6 +42,7 @@ export default {
 }
 
 .background_header {
+  
   background: linear-gradient(45deg, rgb(151, 218, 120), rgb(119, 204, 243));
 }
 .background_footer {
