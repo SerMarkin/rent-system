@@ -32,6 +32,8 @@
     width: 250px;
     height: 400px;
     text-align: left;
+    margin-top: 2%;
+    left:10%;
 }
     .image_item{
         width: 100%;

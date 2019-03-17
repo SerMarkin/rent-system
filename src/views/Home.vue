@@ -1,8 +1,10 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <show-item :item="items[0]"></show-item>
-  </div>
+    <v-layout row wrap>
+
+      <v-flex pa-1 xs12 sm6  md3  v-for="(item,index) of items" :key="index" align-self-center>
+      <show-item :item="item" ></show-item>
+    </v-flex>
+    </v-layout>
 </template>
 
 <script>

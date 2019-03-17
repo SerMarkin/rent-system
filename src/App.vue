@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <headerz></headerz>
-    <router-view/>
+    <router-view class="router_page"/>
     <footerz></footerz>
   </div>
 </template>
@@ -24,7 +24,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   background: #9cc8f5;
 }
@@ -42,11 +41,14 @@ export default {
 }
 
 .background_header {
-  
+
   background: linear-gradient(45deg, rgb(151, 218, 120), rgb(119, 204, 243));
 }
 .background_footer {
     background: rgb(46, 43, 43);
 }
+  .router_page{
+    padding-top: 10%;
+  }
 
 </style>
