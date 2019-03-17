@@ -1,7 +1,7 @@
 <template>
 
     <v-toolbar @click="test" >
-        <v-toolbar-title class="sub_header">
+        <v-toolbar-title class="sub_header on_hover" @click="$router.push('/')">
         <img src="https://img.icons8.com/nolan/64/000000/down2.png" class="trans_left" >
         <h1>INNORENT</h1>
             <img src="https://img.icons8.com/nolan/64/000000/down2.png" class="trans_right">
