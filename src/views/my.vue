@@ -1,31 +1,59 @@
 <template>
     <div>
-        <h1>This is my page</h1>
-        <v-btn @click="myButton()">myCoolButton</v-btn>
-        <v-btn @click="myButton2()">myCoolButton2</v-btn>
-        <v-btn @click="myButton3()" :disabled="flag">myCoolButton3</v-btn>
+        <v-tabs centered color="cyan" dark icons-and-text v-model="activeTab">
+      <v-tabs-slider color="yellow"></v-tabs-slider>  
+      <v-tab >
+        My profile
+      </v-tab>
+  
+      <v-tab >
+        My items
+      </v-tab>
+  
+      <v-tab >
+        My orders
+      </v-tab>
+  
+      <v-tab-item>
+        
+          <userProfilez></userProfilez>
+       
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>{{ i }}</v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>{{ i }}</v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
+        
+        
     </div>
 </template>
 
 <script>
+import userProfile from "../components/userProfile";
+import userItems from "../components/userItems";
+import userOrders from "../components/userOrders";
 export default {
     name: 'myz',
     data(){
         return{
-            flag: true
+            
+            activeTab: 0
         }
     },
     methods:{
-        myButton:()=>{
-            console.log(this);
-        },
-        myButton2: function(){
-            console.log(this);
-            this.flag=!this.flag;
-        },
-        myButton3(){
-            console.log(this);
-        }
+        
+    },
+    components:{
+        'userProfilez':userProfile,
+        'userItemsz':userItems,
+        'userOrdersz':userOrders
     }
 }
 </script>

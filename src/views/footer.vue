@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 
 p{
     color: rgb(85, 163, 137);
