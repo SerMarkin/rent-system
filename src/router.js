@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import log from './views/log.vue'
+import log from './views/login.vue'
 import my from './views/my.vue';
 
 Vue.use(Router);
@@ -30,7 +30,7 @@ export default new Router({
       component: my
     },
     {
-      path: '/log',
+      path: '/login',
       name: 'log',
       component: log
     },
