@@ -53,12 +53,12 @@
                     let config = {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE',
-                    'Access-Control-Allow-Headers': 'Authorization, Lang'
+                            'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE',
+                            'Access-Control-Allow-Headers': 'Authorization, Lang'
                         }
                     }
                     let url = this.$store.state.url +'users'
-                    axios.post(url,data)
+                    axios.post(url,data,config)
                         .then((resp)=>{
                             console.log(resp)
                             this.$router.push('/my')
