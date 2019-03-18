@@ -50,6 +50,13 @@
                         username: this.email,
                         role_id: 1
                     }
+                    let config = {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE',
+                    'Access-Control-Allow-Headers': 'Authorization, Lang'
+                        }
+                    }
                     let url = this.$store.state.url +'users'
                     axios.post(url,data)
                         .then((resp)=>{
