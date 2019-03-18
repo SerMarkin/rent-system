@@ -50,7 +50,8 @@
                         username: this.email,
                         role_id: 1
                     }
-                    axios.post(data)
+                    let url = this.$store.state.url +'users'
+                    axios.post(url,data)
                         .then((resp)=>{
                             console.log(resp)
                             this.$router.push('/my')
