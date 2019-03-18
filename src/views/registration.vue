@@ -3,11 +3,12 @@
         <v-card class="card_main" :elevation="10">
             <h2 class="text-uppercase">Регистрация</h2>
             <v-form ref="regForm">
-                <v-text-field v-model.lazy="surname" label="Фамилия" :rules="[rules.required]"></v-text-field>
-                <v-text-field v-model.lazy="name" label="Имя" :rules="[rules.required]"></v-text-field>
-                <v-text-field v-model.lazy="lastname" label="Отчество"></v-text-field>
+                <v-text-field v-model="surname" label="Фамилия" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="name" label="Имя" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="phone" label="Телефон" :mask="'+7##########'"></v-text-field>
                 <v-text-field v-model="email" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
-                <v-text-field v-model="pass" label="Пароль" type="password" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="pass1" label="Пароль" type="password" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="pass2" label="Подтвердите пароль" type="password" :rules="[rules.required]"></v-text-field>
                 <v-btn @click="regUser()">Зарегистрироватся</v-btn>
                 <a @click="$router.push('/login')">Уже есть аккаунт?</a>
             </v-form>
@@ -21,9 +22,10 @@
         data(){
             return{
                 surname:'',
-                lastname:'',
+                phone:'',
                 name:'',
-                pass:'',
+                pass1:'',
+                pass2:'',
                 email:'',
                 rules: {
                     email: (val) => {
@@ -37,7 +39,24 @@
         methods:{
             regUser(){
                 if (this.$refs.regForm.validate()){
-                    this.$router.push('/my')
+                    let data = {
+                        surname: this.surname,
+                        name : this.name,
+                        password: this.pass1,
+                        password_confirmation: this.pass2,
+                        email: this.email,
+                        phone: this.phone,
+                        username: this.email,
+                        role_id: 1
+                    }
+                    axios.post(data)
+                        .then((resp)=>{
+                            console.log(resp)
+                            this.$router.push('/my')
+                        })
+                        .catch((er)=>{
+                            console.log(er)
+                        })
                 }
             }
         }
