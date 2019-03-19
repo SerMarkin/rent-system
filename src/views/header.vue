@@ -29,7 +29,8 @@
         methods:{
             logout(){
                 this.$localStorage.remove('token')
-                console.log(this.auth)
+                this.$store.state.auth = false
+                this.$store.state.user = {}
                 this.$router.push('/')
             },
             test(){
