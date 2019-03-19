@@ -11,13 +11,13 @@
           </v-card-title>
           <v-card-text>
                 <v-form ref="addItem">
-                  <v-text-field v-model="name" label="Название*" :rules="[rules.required]"></v-text-field>
+                  <v-text-field v-model="name" label="Title*" :rules="[rules.required]"></v-text-field>
                     <div v-if="false">
-                    <h4>Загрузить фото</h4>
+                    <h4>Upload photo</h4>
                     <input type="file" accept="image/jpeg,image/png" class="input_file"><br></div>
                     <v-menu top left>
 
-                            <v-text-field slot="activator" v-model="categories[category].title" label="Категория*" :rules="[rules.required]" readonly></v-text-field>
+                            <v-text-field slot="activator" v-model="categories[category].title" label="Category*" :rules="[rules.required]" readonly></v-text-field>
                         <v-list style="height: 200px;">
                             <v-list-tile
                                     v-for="(item, index) in categories"
@@ -29,7 +29,8 @@
                             </v-list-tile>
                         </v-list>
                     </v-menu>
-                  <v-textarea v-model="description" label="Описание*" :rules="[rules.required]"></v-textarea>
+                  <v-textarea v-model="description" label="Description*" :rules="[rules.required]"></v-textarea>
+                  <v-text-field v-model.number="price" label="Price*" :mask="'########'" :rules="[rules.required]"></v-text-field>
                 </v-form>
             <small>*indicates required field</small>
           </v-card-text>
@@ -63,12 +64,13 @@ export default {
             e1:'',
             name:'',
             category:0,
+            price:'',
             description:'',
         items:[
             {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
       ],
             rules:{required:(val)=>!!val || 'Заполните поле'},
-            categories:['Спорт','Бытовые приборы','Родственники']
+            categories:[]
         }
     },
     methods:{
@@ -82,9 +84,10 @@ export default {
                 }
                 let data = {
                     title: this.name,
-                    subcategory : this.categories[this.category].id,
+                    subcategory_id : this.categories[this.category].id,
                     description: this.description,
-                    user_id: this.$store.state.user.id
+                    user_id: this.$store.state.user.id,
+                    price: this.price
                 }
                 let url = this.$store.state.url + 'items'
                 axios.post(url,data,config)
@@ -113,7 +116,7 @@ export default {
                     'Authorization':  t.$localStorage.get('token')
                 }
             }
-            let url = this.$store.state.url + 'categories'
+            let url = this.$store.state.url + 'subcategories'
             axios.get(url,config)
                 .then((resp)=>{
                     t.categories = resp.data.data
