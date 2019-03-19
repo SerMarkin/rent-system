@@ -83,7 +83,8 @@ export default {
                 let data = {
                     title: this.name,
                     categories : this.categories[this.category].id,
-                    description: this.description
+                    description: this.description,
+                    user_id: this.$store.state.user.id
                 }
                 let url = this.$store.state.url + 'items'
                 axios.post(url,data,config)
