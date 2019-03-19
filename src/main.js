@@ -20,10 +20,10 @@ router.beforeEach((to, from, next) => {
         'Authorization':  Vue.localStorage.get('token')
       }
     }
-    axios.get(store.state.url + 'users',config)
+    axios.get(store.state.url + 'users/token',config)
         .then((resp)=>{
           store.state.auth = true
-          store.state.user = resp.data
+          store.state.user = resp.data.data
           next()
         })
         .catch((err)=>{
