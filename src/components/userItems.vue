@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <h1 style="text-align:center">This is my items page</h1>
+        <h1 style="text-align:center" >This is my items page</h1>
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
         </div>
@@ -47,7 +47,13 @@
                 <show-item :item="item" :showButton="false" ></show-item>
             </v-flex>
         </v-layout>
-
+        <v-layout row justify-center>
+<v-dialog v-model="dialog2" max-width="300px">
+<v-card  class="card_status" >
+    <p>{{text_message}}</p>
+</v-card>
+</v-dialog>
+        </v-layout>
     </v-app>
 </template>
 
@@ -61,16 +67,18 @@ export default {
     data(){
         return{
             dialog:false,
+            dialog2:false,
             e1:'',
             name:'',
             category:0,
             price:'',
             description:'',
+            text_message:'Success',
         items:[
             {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
       ],
             rules:{required:(val)=>!!val || 'Заполните поле'},
-            categories:[]
+            categories:[{title:''}]
         }
     },
     methods:{
@@ -92,7 +100,10 @@ export default {
                 let url = this.$store.state.url + 'items'
                 axios.post(url,data,config)
                     .then((resp)=>{
-                        t.items = resp.data.data
+                        t.updateItems()
+                        t.dialog = false
+                        t.dialog2 = true
+                        setTimeout(()=>{t.dialog2=false},3000)
                     })
             }
         },
@@ -104,6 +115,7 @@ export default {
                 }
             }
             let url = this.$store.state.url + 'users/items'
+            t.items = []
             axios.get(url,config)
                 .then((resp)=>{
                     t.items = resp.data.data
@@ -135,5 +147,13 @@ export default {
 <style scoped>
     .theme--light.v-label {
         color: rgb(255, 0, 0);
+    }
+    .card_status{
+        text-align: center;
+        justify-content: center;
+        font-size: 20px;
+        width: 100%;
+        height: 200px;
+        padding: 20%;
     }
 </style>
