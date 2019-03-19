@@ -4,7 +4,7 @@
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
         </div>
-        <v-dialog v-model="dialog" width="600px" height="700px" z-index="10000">
+        <v-dialog v-model="dialog" max-width="600px">
         <v-card>
           <v-card-title>
             <span class="headline">Режим добавления</span>
@@ -12,8 +12,9 @@
           <v-card-text>
                 <v-form ref="addItem">
                   <v-text-field v-model="name" label="Название*" :rules="[rules.required]"></v-text-field>
+                    <div v-if="false">
                     <h4>Загрузить фото</h4>
-                    <input type="file" accept="image/jpeg,image/png" class="input_file"><br>
+                    <input type="file" accept="image/jpeg,image/png" class="input_file"><br></div>
                     <v-menu top left>
 
                             <v-text-field slot="activator" v-model="categories[category].title" label="Категория*" :rules="[rules.required]" readonly></v-text-field>
@@ -67,7 +68,7 @@ export default {
             {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
       ],
             rules:{required:(val)=>!!val || 'Заполните поле'},
-            categories:['Спорт','Бытовые приборы','Родственники','Спорт1','Бытовые приборы1','Родственники1','Спорт2','Бытовые приборы2','Родственники2','Спорт3','Бытовые приборы3','Родственники3','Спорт4','Бытовые приборы4','4Родственники',]
+            categories:['Спорт','Бытовые приборы','Родственники']
         }
     },
     methods:{

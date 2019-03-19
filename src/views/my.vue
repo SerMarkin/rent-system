@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-app>
         <v-tabs centered color="cyan" dark icons-and-text v-model="activeTab">
       <v-tabs-slider color="yellow"></v-tabs-slider>
       <v-tab >
@@ -28,7 +28,7 @@
     </v-tabs>
 
 
-    </div>
+    </v-app>
 </template>
 
 <script>
