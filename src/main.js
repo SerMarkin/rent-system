@@ -14,7 +14,7 @@ Vue.use(axios)
 Vue.config.productionTip = false;
 router.beforeEach((to, from, next) => {
   let config = {
-    header:{
+    headers:{
       'token': Vue.localStorage.get('token')
     }
   }
