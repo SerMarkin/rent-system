@@ -15,7 +15,7 @@ Vue.config.productionTip = false;
 router.beforeEach((to, from, next) => {
   let config = {
     headers:{
-      'token': Vue.localStorage.get('token')
+      'Authorization':  Vue.localStorage.get('token')
     }
   }
   axios.get(store.state.url + 'users',config)
