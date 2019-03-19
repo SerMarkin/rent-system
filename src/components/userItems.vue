@@ -61,7 +61,7 @@ export default {
             dialog:false,
             e1:'',
             name:'',
-            category:'',
+            category:0,
             description:'',
         items:[
             {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
