@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <div>
         <h1 style="text-align:center">This is my items page</h1>
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
@@ -46,7 +46,7 @@
             </v-flex>
         </v-layout>
 
-    </v-app>
+    </div>
 </template>
 
 
