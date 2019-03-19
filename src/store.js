@@ -4,7 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    url: window.origin + '/api/'
+    url: window.origin + '/api/',
+    user:{}
   },
   mutations: {
 

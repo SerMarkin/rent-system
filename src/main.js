@@ -14,7 +14,15 @@ Vue.use(axios)
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  console.log('Проверяем токен');
+  let config = {
+    header:{
+      'token': VueLocalStorage.get('token')
+    }
+  }
+  axios.get(store.state.url + 'users',config)
+      .then((resp)=>{
+        store.state.user = resp.data
+      })
   next()
 })
 
