@@ -7,7 +7,7 @@
             <img src="https://img.icons8.com/nolan/64/000000/down2.png" class="trans_right">
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-toolbar-items  v-if="auth">
+        <v-toolbar-items  v-if="$store.state.auth">
             <v-btn flat  @click="$router.push('/my')"><v-icon x-large>account_circle</v-icon></v-btn>
             <v-btn flat @click="logout()"><v-icon>exit_to_app</v-icon></v-btn>
         </v-toolbar-items>
@@ -33,23 +33,11 @@
                 this.$router.push('/')
             },
             test(){
-                console.log(this.token)
+                console.log(this.$store.state.auth)
             },
-            updateToken(){
-                this.token = this.$localStorage.get('token')
-            }
+
         },
-        mounted() {
-            this.intUpd = setInterval(this.updateToken,100)
-        },
-        beforeDestroy() {
-            clearInterval(this.intUpd)
-        },
-        computed:{
-            auth(){
-                return !!this.token && this.token != ''
-            }
-        }
+
     }
 </script>
 <style>

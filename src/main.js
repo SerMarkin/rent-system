@@ -20,6 +20,7 @@ router.beforeEach((to, from, next) => {
   }
   axios.get(store.state.url + 'users',config)
       .then((resp)=>{
+        store.state.auth = true
         store.state.user = resp.data
       })
   next()
