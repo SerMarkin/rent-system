@@ -1,13 +1,20 @@
 <template>
  <v-app>
      <v-card class="card_main" :elevation="10">
-         <h2 class="text-uppercase">Авторизация</h2>
+         <h2 class="text-uppercase">Auth</h2>
          <v-form ref="logForm">
          <v-text-field v-model.lazy="name" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
-         <v-text-field v-model="pass" label="Пароль" type="password" :rules="[rules.required]"></v-text-field>
-             <v-btn @click="checkUser()">Войти</v-btn>
+         <v-text-field v-model="pass" label="Password" type="password" :rules="[rules.required]"></v-text-field>
+             <v-btn @click="checkUser()" class="">Sing in</v-btn>
+             <v-alert
+                     v-model="err"
+                     type="error"
+                     transition="scale-transition"
+             >
+                 Incorect login or password
+             </v-alert>
          </v-form>
-         <a @click.stop="$router.push('/registration')">Не зарегистрирован?</a>
+         <a @click.stop="$router.push('/registration')">Sing up</a>
      </v-card>
  </v-app>
 </template>
@@ -21,6 +28,7 @@
                 nameIn:'',
                 name:'',
                 pass:'',
+                err:false,
                 rules: {
                     email: (val) => {
                         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -33,6 +41,7 @@
         },
         methods:{
             checkUser(){
+                let t= this
                 if(this.$refs.logForm.validate()){
                     console.log('Отправляем логин и пароль на сервак и получаем ответ')
                     let data = {
@@ -42,13 +51,24 @@
                     let url = this.$store.state.url + 'authenticate'
                     axios.post(url,data)
                         .then((resp)=>{
-                            console.log(resp)
+                            this.$localStorage.set('token',resp.data.auth_token)
+                            this.$router.push('/my')
                         })
-                    this.$router.push('/my')
+                        .catch((resp)=>{
+                            t.err = true
+                            t.setTime(t.closeErrAlert,3000)
+                        })
                 }else{
                     console.log('invalid form')
                 }
 
+            },
+            closeErrAlert(){
+                this.err = false
+                console.log(this.err)
+            },
+            setTime(func,time){
+                setTimeout(func,time)
             }
         }
     }
