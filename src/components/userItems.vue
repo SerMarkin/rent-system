@@ -82,7 +82,7 @@ export default {
                 }
                 let data = {
                     title: this.name,
-                    categories : this.categories[this.category].id,
+                    subcategory : this.categories[this.category].id,
                     description: this.description,
                     user_id: this.$store.state.user.id
                 }
