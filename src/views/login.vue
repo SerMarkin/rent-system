@@ -44,6 +44,8 @@
                             console.log(resp)
                         })
                     this.$router.push('/my')
+                }else{
+                    console.log('invalid form')
                 }
 
             }
