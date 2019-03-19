@@ -28,7 +28,7 @@
         },
         methods:{
             logout(){
-                this.$localStorage.remove('token')
+                this.$localStorage.set('token',null)
                 console.log(this.auth)
                 this.$router.push('/')
             },
@@ -36,7 +36,7 @@
                 console.log(this.token)
             },
             updateToken(){
-                this.token = this.$localStorage.get('token',null)
+                this.token = this.$localStorage.get('token')
             }
         },
         mounted() {
