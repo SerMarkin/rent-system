@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <v-app>
         <h1 style="text-align:center">This is my items page</h1>
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
         </div>
-        <v-dialog v-model="dialog" max-width="600px" z-index="10000">
+        <v-dialog v-model="dialog" width="600px" height="700px" z-index="10000">
         <v-card>
           <v-card-title>
             <span class="headline">Режим добавления</span>
@@ -46,7 +46,7 @@
             </v-flex>
         </v-layout>
 
-    </div>
+    </v-app>
 </template>
 
 
