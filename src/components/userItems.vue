@@ -53,6 +53,7 @@
 <script>
 import item from '../components/item'
 
+import axios from 'axios'
 export default {
     name:'userItems',
     data(){
@@ -63,16 +64,7 @@ export default {
             category:'',
             description:'',
         items:[
-        {name:'Name0',descr:'lorem',price:'100'},
-        {name:'Name1',descr:'lorem',price:'100'},
-        {name:'Name2',descr:'lorem',price:'100'},
-        {name:'Name3',descr:'lorem',price:'100'},
-        {name:'Name4',descr:'lorem',price:'100'},
-        {name:'Name5',descr:'lorem',price:'100'},
-        {name:'Name6',descr:'lorem',price:'100'},
-        {name:'Name7',descr:'lorem',price:'100'},
-        {name:'Name8',descr:'lorem',price:'100'},
-        {name:'Name9',descr:'lorem',price:'100'},
+            {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
       ],
             rules:{required:(val)=>!!val || 'Заполните поле'},
             categories:['Спорт','Бытовые приборы','Родственники','Спорт1','Бытовые приборы1','Родственники1','Спорт2','Бытовые приборы2','Родственники2','Спорт3','Бытовые приборы3','Родственники3','Спорт4','Бытовые приборы4','4Родственники',]
@@ -83,7 +75,23 @@ export default {
             if(this.$refs.addItem.validate()){
                 console.log('true')
             }
+        },
+        updateItems(){
+            let t = this
+            let config = {
+                headers:{
+                    'Authorization':  this.$localStorage.get('token')
+                }
+            }
+            let url = this.$store.state.url + 'users/items'
+            axios.get(url,config)
+                .then((resp)=>{
+                    t.items = resp.data.data
+                })
         }
+    },
+    created(){
+        this.updateItems()
     },
     components:{
         'show-item':item

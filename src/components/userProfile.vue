@@ -10,7 +10,7 @@
         <v-btn @click="saveChages">Save</v-btn>
         </v-form>
     </v-card>
-    <v-card style="text-align:left;margin-top: 2%">
+    <v-card style="text-align:left;margin-top: 2%" v-if="false">
         <h2>Safe</h2>
         <v-text-field v-model="oldPass" label="Old password" type="password"></v-text-field>
         <v-text-field v-model="newPass" label="New password" type="password"></v-text-field>
