@@ -1,16 +1,16 @@
 <template>
     <v-app>
         <v-card class="card_main" :elevation="10">
-            <h2 class="text-uppercase">Регистрация</h2>
+            <h2 class="text-uppercase">Registration</h2>
             <v-form ref="regForm">
-                <v-text-field v-model="surname" label="Фамилия" :rules="[rules.required]"></v-text-field>
-                <v-text-field v-model="name" label="Имя" :rules="[rules.required]"></v-text-field>
-                <v-text-field v-model="phone" label="Телефон" :mask="'+7##########'"></v-text-field>
+                <v-text-field v-model="surname" label="Surname" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="name" label="Name" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="phone" label="Phone" :mask="'+7##########'"></v-text-field>
                 <v-text-field v-model="email" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
-                <v-text-field v-model="pass1" label="Пароль" type="password" :rules="[rules.required]"></v-text-field>
-                <v-text-field v-model="pass2" label="Подтвердите пароль" type="password" :rules="[rules.required]"></v-text-field>
-                <v-btn @click="regUser()">Зарегистрироватся</v-btn>
-                <a @click="$router.push('/login')">Уже есть аккаунт?</a>
+                <v-text-field v-model="pass1" label="Password" type="password" :rules="[rules.required]"></v-text-field>
+                <v-text-field v-model="pass2" label="Confirm password" type="password" :rules="[rules.required]"></v-text-field>
+                <v-btn @click="regUser()">Sing up</v-btn>
+                <a @click="$router.push('/login')">Have account?</a>
             </v-form>
         </v-card>
     </v-app>
@@ -31,9 +31,9 @@
                 rules: {
                     email: (val) => {
                         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        return !val || re.test(String(val).toLowerCase()) || 'Некорректный ввод';
+                        return !val || re.test(String(val).toLowerCase()) || 'Uncorrected value';
                     },
-                    required:(val)=> !!val || 'Это поле обязательное для заполнения'
+                    required:(val)=> !!val || 'Required'
                 },
             }
         },

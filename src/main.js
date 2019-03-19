@@ -24,12 +24,15 @@ router.beforeEach((to, from, next) => {
         .then((resp)=>{
           store.state.auth = true
           store.state.user = resp.data
+          next()
         })
         .catch((err)=>{
+            next()
           console.log('asdasdasd')
         })
+  }else{
+      next()
   }
-  next()
 })
 
 
