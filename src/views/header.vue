@@ -18,36 +18,21 @@
 </template>
 <script>
     export default {
-        name:'headerz',
-        data(){
-            return{
-                auth1:false,
-                token:'',
-                intUpd:0,
-            }
+        name: 'headerz',
+        data() {
+            return {}
         },
-        methods:{
-            logout(){
+        methods: {
+            logout() {
                 this.$localStorage.remove('token')
                 this.$store.state.auth = false
                 this.$store.state.user = {}
                 this.$router.push('/')
-            },
-            test(){
-                console.log(this.$store.state.auth)
-            },
-
-        },
-
+            }
+        }
     }
 </script>
 <style>
-.header{
-    width: 100%;
-    height: 15vh;
-    position: fixed;
-    z-index: 10000;
-}
 .sub_header{
     display: inline-flex;
     justify-content: center;
