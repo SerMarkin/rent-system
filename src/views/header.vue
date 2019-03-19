@@ -28,7 +28,7 @@
         },
         methods:{
             logout(){
-                this.$localStorage.set('token',null)
+                this.$localStorage.remove('token')
                 console.log(this.auth)
                 this.$router.push('/')
             },

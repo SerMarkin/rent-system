@@ -12,11 +12,10 @@ Vue.use(Vuetify);
 
 Vue.use(axios)
 Vue.config.productionTip = false;
-Vue.localStorage.set('token',null)
 router.beforeEach((to, from, next) => {
   let config = {
     header:{
-      'token': Vue.localStorage.get('token',null)
+      'token': Vue.localStorage.get('token')
     }
   }
   axios.get(store.state.url + 'users',config)
