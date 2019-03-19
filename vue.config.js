@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'https://tranquil-mountain-16560.herokuapp.com',
+                target: 'localhost:3000',
                 pathRewrite: { '^/api': '' },
             },
         }
