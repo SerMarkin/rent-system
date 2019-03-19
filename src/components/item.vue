@@ -1,9 +1,9 @@
 <template>
 <v-card class="item_card">
-    <v-card-title class="head">{{item.name}}</v-card-title>
+    <v-card-title class="head">{{item.title}}</v-card-title>
     <img src="../assets/logo.png" class="image_item">
     <v-card-text class="descr_item">
-    <p>{{item.descr}}</p>
+    <p>{{item.description}}</p>
     </v-card-text>
 
     <v-card-actions class="price_item">

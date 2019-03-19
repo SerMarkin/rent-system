@@ -12,6 +12,7 @@
 <script>
 // @ is an alias to /src
 import item from '../components/item'
+import axios from 'axios'
 export default {
   name: 'home',
   components:{
@@ -20,18 +21,22 @@ export default {
   data(){
     return {
       items:[
-        {name:'Name0',descr:'lorem',price:'100'},
-        {name:'Name1',descr:'lorem',price:'100'},
-        {name:'Name2',descr:'lorem',price:'100'},
-        {name:'Name3',descr:'lorem',price:'100'},
-        {name:'Name4',descr:'lorem',price:'100'},
-        {name:'Name5',descr:'lorem',price:'100'},
-        {name:'Name6',descr:'lorem',price:'100'},
-        {name:'Name7',descr:'lorem',price:'100'},
-        {name:'Name8',descr:'lorem',price:'100'},
-        {name:'Name9',descr:'lorem',price:'100'},
+        {title:'Name0',description:'lorem',price:'100',duration:0,user_id:0},
       ]
     }
+  },
+  methods:{
+    updateItems(){
+      let t = this
+      axios.get(this.$store.state.url + 'items')
+              .then((resp)=>{
+                t.items = resp.data
+              })
+    }
+  },
+  created() {
+    this.updateItems()
   }
+
 }
 </script>
