@@ -16,15 +16,15 @@
                     <input type="file" accept="image/jpeg,image/png" class="input_file"><br>
                     <v-menu top left>
 
-                            <v-text-field slot="activator" v-model="category" label="Категория*" :rules="[rules.required]" readonly></v-text-field>
+                            <v-text-field slot="activator" v-model="categories[category].title" label="Категория*" :rules="[rules.required]" readonly></v-text-field>
                         <v-list style="height: 200px;">
                             <v-list-tile
                                     v-for="(item, index) in categories"
                                     :key="index"
-                                    @click="category = item"
+                                    @click="category = index"
                                     style="background: white"
                             >
-                                <v-list-tile-title>{{ item }}</v-list-tile-title>
+                                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                             </v-list-tile>
                         </v-list>
                     </v-menu>
@@ -73,7 +73,22 @@ export default {
     methods:{
         addItem(){
             if(this.$refs.addItem.validate()){
-                console.log('true')
+                let t = this
+                let config = {
+                    headers:{
+                        'Authorization':  this.$localStorage.get('token')
+                    }
+                }
+                let data = {
+                    title: this.name,
+                    categories : this.categories[this.category].id,
+                    description: this.description
+                }
+                let url = this.$store.state.url + 'items'
+                axios.post(url,data,config)
+                    .then((resp)=>{
+                        t.items = resp.data.data
+                    })
             }
         },
         updateItems(){
@@ -88,10 +103,24 @@ export default {
                 .then((resp)=>{
                     t.items = resp.data.data
                 })
+        },
+        updateCategories(){
+            let t = this
+            let config = {
+                headers:{
+                    'Authorization':  t.$localStorage.get('token')
+                }
+            }
+            let url = this.$store.state.url + 'categories'
+            axios.get(url,config)
+                .then((resp)=>{
+                    t.categories = resp.data.data
+                })
         }
     },
     created(){
         this.updateItems()
+        this.updateCategories()
     },
     components:{
         'show-item':item
