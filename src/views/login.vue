@@ -34,7 +34,15 @@
             checkUser(){
                 if(this.$refs.logForm.validate()){
                     console.log('Отправляем логин и пароль на сервак и получаем ответ')
-                    this.$localStorage.set('token','asdasdasd')
+                    let data = {
+                        "email":this.name,
+                        "password":this.pass
+                    }
+                    let url = this.$store.state.url + 'authenticate'
+                    axios.post(url,data)
+                        .then((resp)=>{
+                            console.log(resp)
+                        })
                     this.$router.push('/my')
                 }
 
