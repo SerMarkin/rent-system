@@ -4,7 +4,7 @@
         <div style="display:flex; justify-content:center">
             <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
         </div>
-        <v-dialog v-model="dialog" max-width="600px">
+        <v-dialog v-model="dialog" max-width="600px" z-index="10000">
         <v-card>
           <v-card-title>
             <span class="headline">Режим добавления</span>
@@ -58,7 +58,7 @@ export default {
     name:'userItems',
     data(){
         return{
-        dialog:false,
+            dialog:false,
             e1:'',
             name:'',
             category:'',
