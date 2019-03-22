@@ -2,7 +2,7 @@
     <v-app>
         <h1 style="text-align:center" >This is my items page</h1>
         <div style="display:flex; justify-content:center">
-            <v-btn @click="dialog=!dialog">Добавить вещь</v-btn>
+            <v-btn @click="dialog=!dialog">Add item</v-btn>
         </div>
         <v-dialog v-model="dialog" max-width="600px">
         <v-card>
