@@ -7,9 +7,9 @@
     </v-card-text>
 
     <v-card-actions class="price_item">
-        <h3>{{item.price}}Р/день </h3>
+        <h3>{{item.price}}Р/day </h3>
         <v-spacer></v-spacer>
-        <v-btn v-if="showButton">Арендовать</v-btn>
+        <v-btn v-if="showButton">Rent</v-btn>
     </v-card-actions>
 </v-card>
 </template>
