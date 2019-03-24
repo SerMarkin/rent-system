@@ -7,7 +7,7 @@
         <v-dialog v-model="dialog" max-width="600px">
         <v-card>
           <v-card-title>
-            <span class="headline">Режим добавления</span>
+            <span class="headline">Addition mode</span>
           </v-card-title>
           <v-card-text>
                 <v-form ref="addItem">
