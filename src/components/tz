@@ -1,0 +1,41 @@
+my orders :
+    status:
+        1 - send request
+        2 - request accepted, but have not item
+        3 - request accepted, and have item
+        4 - item returned (from lessee)
+        5 - item returned (from lessor)
+        6 - item returned, complete (from both)
+        7 - request rejected
+        8 - срок истек  и вещь не возвращена
+request to me :
+    status:
+        1 - no answer
+        2 - request accepted, вещь не у арендующего
+        3 - request accepted, вещь у арендующего
+        4 - item returned (from lessee)
+        5 - item returned (from lessor)
+        6 - item returned, complete (from both)
+        7 - request rejected
+        8 - срок истек  и вещь не возвращена
+
+my orders :
+    status:
+        1 - send request => cancel request
+        2 - request accepted, but have not item => take item
+        3 - request accepted, and have item => return item
+        4 - item returned (from lessee) => -
+        5 - item returned (from lessor) => return item
+        6 - item returned, complete (from both) => -
+        7 - request rejected => -
+        8 - срок истек  и вещь не возвращена => - (write to admin)
+request to me :
+    status:
+        1 - no answer => accept, reject
+        2 - request accepted, вещь не у арендующего => lessee take item
+        3 - request accepted, вещь у арендующего => lessee return item
+        4 - item returned (from lessee) => i take item
+        5 - item returned (from lessor) => -
+        6 - item returned, complete (from both) => -
+        7 - request rejected => -
+        8 - срок истек  и вещь не возвращена => - (write to admin)

@@ -7,9 +7,7 @@
             <v-tab>
                 У меня хотят арендовать
             </v-tab>
-            <v-tab>
-                У меня арендовали
-            </v-tab>
+
             <v-tab-item>
             <v-data-table
                     :headers="headerTable1"
@@ -21,6 +19,15 @@
                         <td class="text-xs-left">{{ props.item.date_in }}</td>
                         <td class="text-xs-left">{{ props.item.date_out }}</td>
                         <td class="text-xs-left">{{ props.item.total_price }}</td>
+                        <td class="text-xs-left">
+                            <v-btn icon v-for="(item,index) of buttonsShowMyRequests[props.item.status]" :key="index"
+                                   :disabled="item.disabled"
+                                   @click="item.method(props.item.status)"
+                            >
+                                <!--{{item.title}}-->
+                                <v-icon>{{item.icon}}</v-icon>
+                            </v-btn>
+                        </td>
                     </tr>
                 </template>
                 <template slot="no-data">
@@ -34,26 +41,6 @@
             <v-tab-item>
                 <v-data-table
                         :headers="headerTable2"
-                        :items="requestsUsers"
-                >
-                    <template slot="items" slot-scope="props">
-                        <tr>
-                            <td>{{ props.item.name }}</td>
-                            <td class="text-xs-left">{{ props.item.date_in }}</td>
-                            <td class="text-xs-left">{{ props.item.date_out }}</td>
-                            <td class="text-xs-left">{{ props.item.total_price }}</td>
-                        </tr>
-                    </template>
-                    <template slot="no-data">
-                        <v-alert :value="true" color="error" icon="warning">
-                            Sorry, nothing to display here :(
-                        </v-alert>
-                    </template>
-                </v-data-table>
-            </v-tab-item>
-            <v-tab-item>
-                <v-data-table
-                        :headers="headerTable3"
                         :items="ordersUsers"
                 >
                     <template slot="items" slot-scope="props">
@@ -62,6 +49,15 @@
                             <td class="text-xs-left">{{ props.item.date_in }}</td>
                             <td class="text-xs-left">{{ props.item.date_out }}</td>
                             <td class="text-xs-left">{{ props.item.total_price }}</td>
+                            <td class="text-xs-left">
+                                <v-btn icon v-for="(item,index) of buttonsShowRequestToMe[props.item.status]" :key="index"
+                                       :disabled="item.disabled"
+                                       @click="item.method(props.item.status)"
+                                >
+                                    <!--{{item.title}}-->
+                                    <v-icon>{{item.icon}}</v-icon>
+                                </v-btn>
+                            </td>
                         </tr>
                     </template>
                     <template slot="no-data">
@@ -81,6 +77,27 @@ export default {
     name:'userOrders',
     data(){
         return{
+            buttonsText:['Accept','Reject','Item returned'],
+            buttonsShowRequestToMe:[[],
+                [{title:'Accept',icon:'check',method:this.test1,disabled:false}, {title:'Reject',icon:'close',method:()=>{},disabled:false}],
+                [{title:'Item taken by lessee',icon:'call_made',method:this.test1,disabled:false}],
+                [{title:'Item returned by lessee',icon:'call_received',method:this.test1,disabled:false}],
+                [{title:'',icon:'cell_wifi',method:this.test1,disabled:true}],
+                [{title:'',icon:'chat_bubble',method:this.test1,disabled:true}],
+                [{title:'',icon:'chat_bubble_outline',method:this.test1,disabled:true}],
+                [{title:'',icon:'clear_all',method:this.test1,disabled:true}],
+                [{title:'',icon:'dialer_sip',method:this.test1,disabled:true}],
+            ],
+            buttonsShowMyRequests:[[],
+                [{title:'Reject',icon:'close',method:this.test1,disabled:false}],
+                [{title:'Item taken by lessee',icon:'call_made',method:this.test1,disabled:false}],
+                [{title:'Item returned by lessee',icon:'call_received',method:this.test1,disabled:false}],
+                [{title:'',icon:'cell_wifi',method:this.test1,disabled:true}],
+                [{title:'',icon:'chat_bubble',method:this.test1,disabled:true}],
+                [{title:'',icon:'chat_bubble_outline',method:this.test1,disabled:true}],
+                [{title:'',icon:'clear_all',method:this.test1,disabled:true}],
+                [{title:'',icon:'dialer_sip',method:this.test1,disabled:true}],
+            ],
             headerTable1:[
                 {
                     text: 'Название объекта',
@@ -89,7 +106,8 @@ export default {
                 },
                 { text: 'Начало аренды', value: 'date_in' },
                 { text: 'Конец аренды', value: 'date_out' },
-                { text: 'Итоговая цена', value: 'total_price' }
+                { text: 'Итоговая цена', value: 'total_price' },
+                { text: 'Status', value: 'status' }
             ],
             headerTable2:[
                 {
@@ -99,45 +117,35 @@ export default {
                 },
                 { text: 'Начало аренды', value: 'date_in' },
                 { text: 'Конец аренды', value: 'date_out' },
-                { text: 'Итоговая цена', value: 'total_price' }
+                { text: 'Итоговая цена', value: 'total_price' },
+                { text: 'Status', value: 'status' }
             ],
-            headerTable3:[
-                {
-                    text: 'Название объекта',
-                    align: 'left',
-                    value: 'name'
-                },
-                { text: 'Начало аренды', value: 'date_in' },
-                { text: 'Конец аренды', value: 'date_out' },
-                { text: 'Итоговая цена', value: 'total_price' }
-            ],
+
             myOrders:[
-                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта7',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'}
+                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
+                {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
+                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'3'},
+                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'4'},
+                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'5'},
+                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'6'},
+                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'7'},
+                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'8'}
             ],
             ordersUsers:[
-                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта7',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'}
-            ],
-            requestsUsers:[
-                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'},
-                {name:'Название объекта7',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000'}
+                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
+                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
+                {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'3'},
+                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'4'},
+                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'5'},
+                {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'6'},
+                {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'7'},
+                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'8'}
             ]
+        }
+    },
+    methods:{
+        test1(a){
+            console.log(a)
         }
     }
 }
