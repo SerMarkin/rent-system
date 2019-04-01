@@ -10,6 +10,7 @@
         <h3>{{item.price}}Р/day </h3>
         <v-spacer></v-spacer>
         <v-btn v-if="showButton">Rent</v-btn>
+        <v-btn v-if="showEditButton" @click="$emit('editItem')">Edit</v-btn>
     </v-card-actions>
 </v-card>
 </template>
@@ -19,7 +20,11 @@
         name: "item",
         props:{
           item:Object,
-          showButton:Boolean
+          showButton:Boolean,
+          showEditButton: {
+              type: Boolean,
+              default: false
+          }
         },
         data(){
             return{
