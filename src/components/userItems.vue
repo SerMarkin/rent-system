@@ -31,6 +31,7 @@
                     </v-menu>
                   <v-textarea v-model="description" label="Description*" :rules="[rules.required]"></v-textarea>
                   <v-text-field v-model.number="price" label="Price*" :mask="'########'" :rules="[rules.required]"></v-text-field>
+                    <v-text-field v-model.number="duration" label="Duration (days)*" :mask="'########'" :rules="[rules.required]"></v-text-field>
                 </v-form>
             <small>*indicates required field</small>
           </v-card-text>
@@ -71,6 +72,7 @@ export default {
             e1:'',
             name:'',
             category:0,
+            duration:'',
             price:'',
             description:'',
             text_message:'Success',
@@ -95,7 +97,8 @@ export default {
                     subcategory_id : this.categories[this.category].id,
                     description: this.description,
                     user_id: this.$store.state.user.id,
-                    price: this.price
+                    price: this.price,
+                    duration: this.duration.toString()
                 }
                 let url = this.$store.state.url + 'items'
                 axios.post(url,data,config)
