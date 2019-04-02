@@ -22,7 +22,7 @@
                         <td class="text-xs-left">
                             <v-btn icon v-for="(item,index) of buttonsShowMyRequests[props.item.status]" :key="index"
                                    :disabled="item.disabled"
-                                   @click="item.method(props.item.status)"
+                                   @click="updateStatus(props.item,item.method)"
                             >
                                 <!--{{item.title}}-->
                                 <v-icon>{{item.icon}}</v-icon>
@@ -52,7 +52,7 @@
                             <td class="text-xs-left">
                                 <v-btn icon v-for="(item,index) of buttonsShowRequestToMe[props.item.status]" :key="index"
                                        :disabled="item.disabled"
-                                       @click="item.method(props.item.status)"
+                                       @click="updateStatus(props.item,item.method)"
                                 >
                                     <!--{{item.title}}-->
                                     <v-icon>{{item.icon}}</v-icon>
@@ -80,19 +80,19 @@ export default {
         return{
             buttonsText:['Accept','Reject','Item returned'],
             buttonsShowRequestToMe:[[],
-                [{title:'Accept',icon:'check',method:this.test1,disabled:false}, {title:'Reject',icon:'close',method:()=>{},disabled:false}],
-                [{title:'Item taken by lessee',icon:'call_made',method:this.test1,disabled:false}],
-                [{title:'Item returned by lessee',icon:'call_received',method:this.test1,disabled:false}],
-                [{title:'',icon:'cell_wifi',method:this.test1,disabled:true}],
-                [{title:'',icon:'chat_bubble',method:this.test1,disabled:true}],
-                [{title:'',icon:'chat_bubble_outline',method:this.test1,disabled:true}],
+                [{title:'Accept',icon:'check',method:2,disabled:false}, {title:'Reject',icon:'close',method:7,disabled:false}],
+                [{title:'Item taken by lessee',icon:'call_made',method:3,disabled:true}],
+                [{title:'Item returned by lessee',icon:'call_received',method:6,disabled:false}],
+                [{title:'Item returned by lessee',icon:'cell_wifi',method:6,disabled:false}],
+                [{title:'Item returned by lessee',icon:'chat_bubble',method:6,disabled:false}],
+                [{title:'Item returned by lessee',icon:'chat_bubble_outline',method:6,disabled:true}],
                 [{title:'',icon:'clear_all',method:this.test1,disabled:true}],
                 [{title:'',icon:'dialer_sip',method:this.test1,disabled:true}],
             ],
             buttonsShowMyRequests:[[],
-                [{title:'Reject',icon:'close',method:this.test1,disabled:false}],
-                [{title:'Item taken by lessee',icon:'call_made',method:this.test1,disabled:false}],
-                [{title:'Item returned by lessee',icon:'call_received',method:this.test1,disabled:false}],
+                [{title:'Reject',icon:'close',method:7,disabled:false}],
+                [{title:'Item taken by lessee',icon:'call_made',method:3,disabled:false}],
+                [{title:'Item returned by lessee',icon:'call_received',method:4,disabled:false}],
                 [{title:'',icon:'cell_wifi',method:this.test1,disabled:true}],
                 [{title:'',icon:'chat_bubble',method:this.test1,disabled:true}],
                 [{title:'',icon:'chat_bubble_outline',method:this.test1,disabled:true}],
@@ -165,7 +165,7 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.myOrders.push(
-                            {name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                            {id:item.id,duration:item.duration,name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
                     })
                 })
         },
@@ -184,12 +184,29 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.ordersUsers.push(
-                            {name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                            {id:item.id,duration:item.duration,name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
                     })
                    // t.ordersUsers = resp.data.data
                     console.log(t.ordersUsers)
                 })
         },
+        updateStatus(item,state){
+            let t = this
+            let config = {
+                headers:{
+                    'Authorization':  this.$localStorage.get('token')
+                }
+            }
+            console.log(item,state)
+            let url = this.$store.state.url + 'orders'
+            let data = {
+                item_id: item.id,
+                duration: item.duration,
+                description: item.name,
+                status:state
+            }
+            axios.patch(url,data,config).then(()=>{t.updateMyOrders();t.updateMyOrdersRent()})
+        }
     },
     beforeMount(){
         this.updateMyOrders()

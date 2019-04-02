@@ -9,13 +9,13 @@
     <v-card-actions class="price_item">
         <h3>{{item.price}}Р/day </h3>
         <v-spacer></v-spacer>
-        <v-btn v-if="showButton">Rent</v-btn>
+        <v-btn v-if="showButton" @click="rentItem">Rent</v-btn>
         <v-btn v-if="showEditButton" @click="$emit('editItem')">Edit</v-btn>
     </v-card-actions>
 </v-card>
 </template>
-
 <script>
+    import axios from 'axios'
     export default {
         name: "item",
         props:{
@@ -28,6 +28,34 @@
         },
         data(){
             return{
+            }
+        },
+        methods:{/*POST /orders
+integer  "item_id"
+integer  "user_id"
+integer  "duration"
+integer  "status"
+text     "description"*/
+            rentItem(){
+                let t = this
+                let config = {
+                    headers:{
+                        'Authorization':  this.$localStorage.get('token')
+                    }
+                }
+                let url = this.$store.state.url + 'orders'
+                let data = {
+                    item_id: this.item.id,
+                    user_id: this.$store.state.user.id,
+                    duration: this.item.duration,
+                    description: this.item.title,
+                    status:1
+                }
+                axios.post(url,data,config)
+                    .then((resp)=>{
+                        t.$router.push('/my')
+                        console.log(success)
+                    })
             }
         }
     }
