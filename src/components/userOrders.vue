@@ -73,6 +73,7 @@
 
 
 <script>
+    import axios from 'axios'
 export default {
     name:'userOrders',
     data(){
@@ -146,7 +147,53 @@ export default {
     methods:{
         test1(a){
             console.log(a)
-        }
+        },
+        updateMyOrders(){
+            /*GET /my-orders/rented - те, что я арендовал
+GET /my-orders/rent*/
+            let t = this
+            let config = {
+                headers:{
+                    'Authorization':  this.$localStorage.get('token')
+                }
+            }
+            axios.get( this.$store.state.url + 'my-orders/rented',config)
+                .then((resp)=>{
+                    console.log(resp)
+                    t.myOrders = []
+                    resp.data.data.forEach((item)=>{
+                        let date1 = new Date(item.created_at)
+                        let date2 = new Date(+date1 + item.duration*24*60*60*1000)
+                        t.myOrders.push(
+                            {name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                    })
+                })
+        },
+        updateMyOrdersRent(){
+            let t = this
+            let config = {
+                headers:{
+                    'Authorization':  this.$localStorage.get('token')
+                }
+            }
+            axios.get( this.$store.state.url + 'my-orders/rent',config)
+                .then((resp)=>{
+                    console.log(resp)
+                    t.ordersUsers = []
+                    resp.data.data.forEach((item)=>{
+                        let date1 = new Date(item.created_at)
+                        let date2 = new Date(+date1 + item.duration*24*60*60*1000)
+                        t.ordersUsers.push(
+                            {name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                    })
+                   // t.ordersUsers = resp.data.data
+                    console.log(t.ordersUsers)
+                })
+        },
+    },
+    beforeMount(){
+        this.updateMyOrders()
+        this.updateMyOrdersRent()
     }
 }
 </script>
