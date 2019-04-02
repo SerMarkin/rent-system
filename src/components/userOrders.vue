@@ -16,6 +16,7 @@
                 <template slot="items" slot-scope="props">
                     <tr>
                         <td>{{ props.item.name }}</td>
+                        <td class="text-xs-left">{{'Email:'+ props.item.lessor_email+' Phone:'+ props.item.lessor_phone}}</td>
                         <td class="text-xs-left">{{ props.item.date_in }}</td>
                         <td class="text-xs-left">{{ props.item.date_out }}</td>
                         <td class="text-xs-left">{{ props.item.total_price }}</td>
@@ -46,6 +47,7 @@
                     <template slot="items" slot-scope="props">
                         <tr>
                             <td>{{ props.item.name }}</td>
+                            <td class="text-xs-left">{{'Email:'+ props.item.lessee_email+' Phone:'+ props.item.lessee_phone}}</td>
                             <td class="text-xs-left">{{ props.item.date_in }}</td>
                             <td class="text-xs-left">{{ props.item.date_out }}</td>
                             <td class="text-xs-left">{{ props.item.total_price }}</td>
@@ -105,6 +107,7 @@ export default {
                     align: 'left',
                     value: 'name'
                 },
+                { text: 'lessor', value: 'lessor' },
                 { text: 'Начало аренды', value: 'date_in' },
                 { text: 'Конец аренды', value: 'date_out' },
                 { text: 'Итоговая цена', value: 'total_price' },
@@ -116,6 +119,7 @@ export default {
                     align: 'left',
                     value: 'name'
                 },
+                { text: 'Lessee', value: 'lessee' },
                 { text: 'Начало аренды', value: 'date_in' },
                 { text: 'Конец аренды', value: 'date_out' },
                 { text: 'Итоговая цена', value: 'total_price' },
@@ -165,7 +169,18 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.myOrders.push(
-                            {id:item.id,duration:item.duration,name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                            {id:item.id,
+                                duration:item.duration,
+                                name:item.description,
+                                date_in:date1.toLocaleDateString('ru-ru'),
+                                date_out:date2.toLocaleDateString('ru-ru'),
+                                total_price:item.final_price,
+                                status:item.status,
+                                lessee_email: item.lessee_email,
+                                lessee_phone:item.lessee_phone,
+                                lessor_email: item.lessor_email,
+                                lessor_phone: item.lessor_phone,
+                            })
                     })
                 })
         },
@@ -184,7 +199,18 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.ordersUsers.push(
-                            {id:item.id,duration:item.duration,name:item.description,date_in:date1.toLocaleDateString('ru-ru'),date_out:date2.toLocaleDateString('ru-ru'),total_price:item.final_price,status:item.status})
+                            {id:item.id,
+                                duration:item.duration,
+                                name:item.description,
+                                date_in:date1.toLocaleDateString('ru-ru'),
+                                date_out:date2.toLocaleDateString('ru-ru'),
+                                total_price:item.final_price,
+                                status:item.status,
+                                lessee_email: item.lessee_email,
+                                lessee_phone:item.lessee_phone,
+                                lessor_email: item.lessor_email,
+                                lessor_phone: item.lessor_phone,
+                            })
                     })
                    // t.ordersUsers = resp.data.data
                     console.log(t.ordersUsers)
