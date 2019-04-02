@@ -198,9 +198,8 @@ GET /my-orders/rent*/
                 }
             }
             console.log(item,state)
-            let url = this.$store.state.url + 'orders'
+            let url = this.$store.state.url + 'orders/' + item.id
             let data = {
-                item_id: item.id,
                 duration: item.duration,
                 description: item.name,
                 status:state
