@@ -1,4 +1,4 @@
-admin:
+main:
   build: .
   container_name: src1
   restart: unless-stopped
