@@ -1,0 +1,6 @@
+admin:
+  build: .
+  container_name: src1
+  restart: unless-stopped
+  ports:
+    - "127.0.0.1:1996:80"
