@@ -1,22 +1,33 @@
-FROM node:lts-alpine
+#==================== Building Stage ================================================
 
-# install simple http server for serving static content
-RUN npm install -g http-server
+# Create the image based on the official Node 8.9.0 image from Dockerhub
+FROM node:8.9.0 as node
 
-# make the 'app' folder the current working directory
-WORKDIR /src
+# Create a directory where our app will be placed. This might not be necessary
+RUN mkdir -p /to-do-app
 
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY package*.json ./
+# Change directory so that our commands run inside this new directory
+WORKDIR /to-do-app
 
-# install project dependencies
+# Copy dependency definitions
+COPY package.json /to-do-app
+
+# Install dependencies using npm
 RUN npm install
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
+# Get all the code needed to run the app
+COPY . /to-do-app
 
-# build app for production with minification
+# Expose the port the app runs in
+EXPOSE 4200
+
+#Build the app
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+#==================== Setting up stage ====================
+# Create image based on the official nginx - Alpine image
+FROM nginx:1.13.7-alpine
+
+COPY --from=node /to-do-app/dist/ /usr/share/nginx/html
+
+COPY ./nginx-to-do-app.conf /etc/nginx/conf.d/default.conf
