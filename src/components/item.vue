@@ -1,6 +1,12 @@
 <template>
 <v-card class="item_card">
+    
+        
+    
     <v-card-title class="head">{{item.title}}</v-card-title>
+    <v-btn icon @click="deleteItem">
+            <v-icon >close</v-icon>
+    </v-btn>
     <img src="../assets/logo.png" class="image_item">
     <v-card-text class="descr_item">
     <p>{{item.description}}</p>
@@ -54,8 +60,17 @@ text     "description"*/
                 axios.post(url,data,config)
                     .then((resp)=>{
                         t.$router.push('/my')
+                        console.log(this + " Отладочный console.log для проверки контекста")
                         console.log(success)
                     })
+            },
+            deleteItem(){
+                console.log("Siroja viry4ai");
+                let data ={
+                    // item_id: this.item.id,
+                    // user_id: this.user.id,
+                    //не, хз ваще чё тут
+                }
             }
         }
     }
@@ -80,6 +95,8 @@ text     "description"*/
         height: 100px;
     }
     .head{
-        height: 50px;
+        /* height: 50px; временное решение. Нужно либо изменить моё временное решение,
+         либо как то переписать логику отображения*/
+        display: inline;
     }
 </style>
