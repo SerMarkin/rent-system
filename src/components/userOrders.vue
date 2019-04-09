@@ -2,10 +2,10 @@
     <v-app>
         <v-tabs>
             <v-tab>
-                Я арендовал
+                My rented items
             </v-tab>
             <v-tab>
-                У меня хотят арендовать
+                My orders
             </v-tab>
 
             <v-tab-item>
@@ -103,30 +103,30 @@ export default {
             ],
             headerTable1:[
                 {
-                    text: 'Название объекта',
+                    text: 'Item name',
                     align: 'left',
                     value: 'name'
                 },
                 { text: 'lessor', value: 'lessor' },
-                { text: 'Начало аренды', value: 'date_in' },
-                { text: 'Конец аренды', value: 'date_out' },
-                { text: 'Итоговая цена', value: 'total_price' },
+                { text: 'Date in', value: 'date_in' },
+                { text: 'Date out', value: 'date_out' },
+                { text: 'Total price', value: 'total_price' },
                 { text: 'Status', value: 'status' }
             ],
             headerTable2:[
                 {
-                    text: 'Название объекта',
+                    text: 'Item name',
                     align: 'left',
                     value: 'name'
                 },
                 { text: 'Lessee', value: 'lessee' },
-                { text: 'Начало аренды', value: 'date_in' },
-                { text: 'Конец аренды', value: 'date_out' },
-                { text: 'Итоговая цена', value: 'total_price' },
+                { text: 'Date in', value: 'date_in' },
+                { text: 'Date out', value: 'date_out' },
+                { text: 'Total price', value: 'total_price' },
                 { text: 'Status', value: 'status' }
             ],
 
-            myOrders:[
+            myOrders:[//Do we need this?)
                 {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
                 {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
                 {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'3'},

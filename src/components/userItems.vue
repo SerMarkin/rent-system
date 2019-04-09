@@ -43,7 +43,7 @@ export default {
         items:[
             {name:'Name0',description:'lorem',price:'100',duration:0,user_id:0,category:0},
       ],
-            rules:{required:(val)=>!!val || 'Заполните поле'},
+            rules:{required:(val)=>!!val || 'Fill required field'},
             categories:[{title:''}]
         }
     },

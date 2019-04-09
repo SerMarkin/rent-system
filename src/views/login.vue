@@ -5,7 +5,7 @@
          <v-form ref="logForm">
          <v-text-field v-model.lazy="name" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
          <v-text-field v-model="pass" label="Password" type="password" :rules="[rules.required]"></v-text-field>
-             <v-btn @click="checkUser()" class="">Sing in</v-btn>
+             <v-btn @click="checkUser()" class="">Sign in</v-btn>
              <v-alert
                      v-model="err"
                      type="error"
@@ -14,7 +14,7 @@
                  Incorect login or password
              </v-alert>
          </v-form>
-         <a @click.stop="$router.push('/registration')">Sing up</a>
+         <a @click.stop="$router.push('/registration')">Sign up</a>
      </v-card>
  </v-app>
 </template>
@@ -32,7 +32,7 @@
                 rules: {
                     email: (val) => {
                         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        return !val || re.test(String(val).toLowerCase()) || 'Некорректный ввод';
+                        return !val || re.test(String(val).toLowerCase()) || 'Incorrect input';
                     },
                     required:(val)=> !!val || 'Это поле обязательное для заполнения'
                 },

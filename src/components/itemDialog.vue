@@ -71,7 +71,7 @@ export default {
                 duration:'',
               description:''
             },
-            rules:{required:(val)=>!!val || 'Заполните поле'},
+            rules:{required:(val)=>!!val || 'Fill required field'},
             categories:[{title:''}]
         }
     },

@@ -11,7 +11,7 @@
         </v-form>
     </v-card>
     <v-card style="text-align:left;margin-top: 2%" v-if="false">
-        <h2>Safe</h2>
+        <h2>Security</h2>
         <v-text-field v-model="oldPass" label="Old password" type="password"></v-text-field>
         <v-text-field v-model="newPass" label="New password" type="password"></v-text-field>
         <v-text-field v-model="newPass_confirm" label="Confirm new password" type="password"></v-text-field>
@@ -39,7 +39,7 @@ export default {
             rules: {
                 email: (val) => {
                     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return !val || re.test(String(val).toLowerCase()) || 'Uncorrected value';
+                    return !val || re.test(String(val).toLowerCase()) || 'Incorrected value';
                 },
                 required:(val)=> !!val || 'Required'
             },

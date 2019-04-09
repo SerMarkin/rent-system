@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 style="text-align:center">Добро пожаловать на наш сайт!</h1>
+    <h1 style="text-align:center">Welcome to our site!</h1>
       <v-layout row wrap>
         <v-flex pa-1 xs12 sm6  md3  v-for="(item,index) of items" :key="index" align-self-center>
           <show-item :item="item" :showButton="$store.state.auth"></show-item>

@@ -12,7 +12,7 @@
             <v-btn flat @click="logout()"><v-icon>exit_to_app</v-icon></v-btn>
         </v-toolbar-items>
         <v-toolbar-items v-else>
-            <v-btn  flat  @click="$router.push('/login')">Войти</v-btn>
+            <v-btn  flat  @click="$router.push('/login')">Sign in</v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>

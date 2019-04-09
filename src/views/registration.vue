@@ -9,7 +9,7 @@
                 <v-text-field v-model="email" label="Email" :rules="[rules.email,rules.required]"></v-text-field>
                 <v-text-field v-model="pass1" label="Password" type="password" :rules="[rules.required]"></v-text-field>
                 <v-text-field v-model="pass2" label="Confirm password" type="password" :rules="[rules.required]"></v-text-field>
-                <v-btn @click="regUser()">Sing up</v-btn>
+                <v-btn @click="regUser()">Sign up</v-btn>
                 <a @click="$router.push('/login')">Have account?</a>
             </v-form>
         </v-card>
@@ -31,9 +31,9 @@
                 rules: {
                     email: (val) => {
                         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        return !val || re.test(String(val).toLowerCase()) || 'Uncorrected value';
+                        return !val || re.test(String(val).toLowerCase()) || 'Incorrected value';
                     },
-                    required:(val)=> !!val || 'Required'
+                    required:(val)=> !!val || 'Fill required field'
                 },
             }
         },

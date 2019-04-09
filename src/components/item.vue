@@ -7,7 +7,7 @@
     </v-card-text>
 
     <v-card-actions class="price_item">
-        <h3>{{item.price}}Р/day </h3>
+        <h3>{{item.price}} ₽/day </h3>
         <v-spacer></v-spacer>
         <v-btn v-if="showButton" @click="rentItem">Rent</v-btn>
         <v-btn v-if="showEditButton" @click="$emit('editItem')">Edit</v-btn>
