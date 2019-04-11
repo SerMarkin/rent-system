@@ -4,7 +4,7 @@
         
     
     <v-card-title class="head">{{item.title}}</v-card-title>
-    <v-btn icon @click="deleteItem">
+    <v-btn icon @click="$emit('deleteItem',item.id)">
             <v-icon >close</v-icon>
     </v-btn>
     <img src="../assets/logo.png" class="image_item">
@@ -28,6 +28,10 @@
           item:Object,
           showButton:Boolean,
           showEditButton: {
+              type: Boolean,
+              default: false
+          },
+          showDeleteButton: {
               type: Boolean,
               default: false
           }
@@ -63,14 +67,6 @@ text     "description"*/
                         console.log(this + " Отладочный console.log для проверки контекста")
                         console.log(success)
                     })
-            },
-            deleteItem(){
-                console.log("Siroja viry4ai");
-                let data ={
-                    // item_id: this.item.id,
-                    // user_id: this.user.id,
-                    //не, хз ваще чё тут
-                }
             }
         }
     }

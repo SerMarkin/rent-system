@@ -50,8 +50,10 @@ export default {
 
         },
         saveChages(){
-            if (this.$refs.userData.validate()) {
-                let data = this.user
+            if (this.$refs.userData.validate()) {                
+                let data = this.user;
+                //TODO change line below when admin will be added                 
+                this.user.role_id = 1;
                 let config = {
                     headers:{
                         'Authorization':  this.$localStorage.get('token')
@@ -62,6 +64,8 @@ export default {
                     .then((resp)=>{
 
                     })
+            }else{
+                console.log('not validated');
             }
         }
     },

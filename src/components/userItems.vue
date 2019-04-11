@@ -9,8 +9,9 @@
         <v-layout row wrap>
             <v-flex pa-1 xs12 sm6  md3 align-self-center
                 v-for="(item,index) of items" :key="index">
-                <show-item :item="item" :showButton="false" :showEditButton="true"
-                @editItem="$refs.dialogz.mode=2;$refs.dialogz.item=item;c.log(item);$refs.dialogz.dialog=true" ></show-item>
+                <show-item :item="item" :showButton="false" :showEditButton="true" :showDeleteButton="true"
+                @editItem="$refs.dialogz.mode=2;$refs.dialogz.item=item;c.log(item);$refs.dialogz.dialog=true"
+                @deleteItem="deleteItem"></show-item>
             </v-flex>
         </v-layout>
         <v-layout row justify-center>
@@ -55,13 +56,20 @@ export default {
                     'Authorization':  this.$localStorage.get('token')
                 }
             }
-            let url = this.$store.state.url + '/my-items'
+            const url = this.$store.state.url + '/my-items'
             t.items = []
             axios.get(url,config)
                 .then((resp)=>{
+                    console.log(this, t);
                     t.items = resp.data.data
                 })
         },
+            deleteItem(itemId){
+                console.log(itemId);
+                const url = this.$store.state.url + '/PLS GIMME URL IGHOR';
+                const data = {id: itemId};
+                axios.delete(url,data);
+            },
 
     },
     created(){
