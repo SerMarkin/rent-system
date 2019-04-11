@@ -163,7 +163,6 @@ GET /my-orders/rent*/
             }
             axios.get( this.$store.state.url + 'my-orders/rented',config)
                 .then((resp)=>{
-                    console.log(resp)
                     t.myOrders = []
                     resp.data.data.forEach((item)=>{
                         let date1 = new Date(item.created_at)
@@ -193,7 +192,6 @@ GET /my-orders/rent*/
             }
             axios.get( this.$store.state.url + 'my-orders/rent',config)
                 .then((resp)=>{
-                    console.log(resp)
                     t.ordersUsers = []
                     resp.data.data.forEach((item)=>{
                         let date1 = new Date(item.created_at)
@@ -213,7 +211,6 @@ GET /my-orders/rent*/
                             })
                     })
                    // t.ordersUsers = resp.data.data
-                    console.log(t.ordersUsers)
                 })
         },
         updateStatus(item,state){
@@ -223,7 +220,6 @@ GET /my-orders/rent*/
                     'Authorization':  this.$localStorage.get('token')
                 }
             }
-            console.log(item,state)
             let url = this.$store.state.url + 'orders/' + item.id
             let data = {
                 duration: item.duration,
