@@ -66,7 +66,7 @@ export default {
         },
             deleteItem(itemId){
                 console.log(itemId);
-                const url = this.$store.state.url + '/PLS GIMME URL IGHOR';
+                const url = this.$store.state.url + '/item/' + itemId;
                 const data = {id: itemId};
                 axios.delete(url,data);
             },
