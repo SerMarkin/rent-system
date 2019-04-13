@@ -4,7 +4,7 @@
         
     
     <v-card-title class="head">{{item.title}}</v-card-title>
-    <v-btn icon @click="$emit('deleteItem',item.id)">
+    <v-btn icon v-if="showDeleteButton" @click="$emit('deleteItem',item.id)">
             <v-icon >close</v-icon>
     </v-btn>
     <img src="../assets/logo.png" class="image_item">
