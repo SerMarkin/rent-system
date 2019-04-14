@@ -1,13 +1,11 @@
 <template>
 <v-card class="item_card">
-    
-        
-    
     <v-card-title class="head">{{item.title}}</v-card-title>
     <v-btn icon v-if="showDeleteButton" @click="$emit('deleteItem',item.id)">
             <v-icon >close</v-icon>
     </v-btn>
-    <img src="../assets/logo.png" class="image_item">
+    <img v-if="!!item.image" :src="item.image" class="image_item">
+    <img v-else src="../assets/nophoto.png" class="image_item">
     <v-card-text class="descr_item">
     <p>{{item.description}}</p>
     </v-card-text>

@@ -30,11 +30,12 @@ export default {
       let t = this
       axios.get(this.$store.state.url + 'items')
               .then((resp)=>{
-                t.items = resp.data.data
+                t.items = resp.data.data.filter((item)=>item.user_id !== t.$store.state.user.id)
               })
     }
   },
   created() {
+    console.log(this.$store.state.user)
     this.updateItems()
   }
 

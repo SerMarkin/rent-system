@@ -8,9 +8,9 @@
           <v-card-text>
                 <v-form ref="addItem">
                   <v-text-field v-model="item.title" label="Title*" :rules="[rules.required]"></v-text-field>
-                    <div v-if="false">
+                    <div>
                     <h4>Upload photo</h4>
-                    <input type="file" accept="image/jpeg,image/png" class="input_file"><br></div>
+                    <input type="file" accept="image/jpeg,image/png" class="input_file" @change="loadImage"><br></div>
                     <v-menu top left>
 
                             <v-text-field slot="activator" v-model="categories[show_cat].title" label="Category*" :rules="[rules.required]" readonly></v-text-field>
@@ -40,7 +40,7 @@
         </v-card>
         </v-dialog>
     <v-dialog v-model="dialog2" max-width="300px">
-        <v-card  class="card_status" >
+        <v-card  class="card_status" style="width: 100%;height: 100%;justify-content: center;text-align: center;font-size: 30px">
             <p>{{text_message}}</p>
         </v-card>
     </v-dialog>
@@ -67,6 +67,7 @@ export default {
             item:{
              name:'',
                 subcategory_id:0,
+                image:'',
               price:'',
                 duration:'',
               description:''
@@ -78,10 +79,26 @@ export default {
     watch :{
       dialog (){
           this.updateCategories()
-      }
+      },
+        mode(val){
+          if (val === 1){
+              this.$refs.addItem.reset()
+          }
+        }
     },
     methods:{
         indexOfCat(){},
+        loadImage(event){
+            let t = this
+            let fileImg = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
+                t.item.image = srcData
+                console.log('Loaded')
+            }
+            reader.readAsDataURL(fileImg);
+        },
         updateCategories(){
             let t = this
             let config = {
@@ -102,7 +119,6 @@ export default {
                             else
                                 k += 1
                         })
-                        console.log(t.show_cat)
                     }else{
                         t.item.subcategory_id = t.categories[t.show_cat].id
                     }
@@ -110,22 +126,22 @@ export default {
         },
         addItem(){
             if(this.$refs.addItem.validate()){
-                let t = this
-                let config = {
+                const t = this
+                const config = {
                     headers:{
                         'Authorization':  this.$localStorage.get('token')
                     }
                 }
-                console.log(this.category)
-                let data = {
+                const data = {
                     title: this.item.title,
                     subcategory_id : this.item.subcategory_id,
                     description: this.item.description,
                     user_id: this.$store.state.user.id,
                     duration: this.item.duration.toString(),
-                    price: this.item.price.toString()
+                    price: this.item.price.toString(),
+                    image: this.item.image
                 }
-                let url = this.$store.state.url + 'items'
+                const url = this.$store.state.url + 'items'
                 axios.post(url,data,config)
                     .then((resp)=>{
                         t.$emit('update')
@@ -143,7 +159,6 @@ export default {
                         'Authorization':  this.$localStorage.get('token')
                     }
                 }
-                console.log(this.category)
                 let data = {
                     title: this.item.title,
                     subcategory_id : this.item.subcategory_id,

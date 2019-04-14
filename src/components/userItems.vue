@@ -60,19 +60,25 @@ export default {
             t.items = []
             axios.get(url,config)
                 .then((resp)=>{
-                    console.log(this, t);
                     t.items = resp.data.data
                 })
         },
             deleteItem(itemId){
                 console.log(itemId);
-                const url = this.$store.state.url + '/item/' + itemId;
-                const data = {id: itemId};
-                axios.delete(url,data);
+                const url = this.$store.state.url + '/items/' + itemId;
+                const config = {
+                    headers:{
+                        'Authorization':  this.$localStorage.get('token')
+                    }
+                }
+                axios.delete(url,config).then(()=>{
+                    this.updateItems()
+                });
             },
 
     },
     created(){
+        console.log(item)
         this.updateItems()
     },
 }
