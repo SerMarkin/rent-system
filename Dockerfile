@@ -1,12 +1,23 @@
-FROM node:lts-alpine as build-stage
+FROM node:lts-alpine as build
+RUN mkdir /app
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
+COPY package.json /app/package.json
+RUN apk add --no-cache --update --virtual .build-deps  \
+    autoconf \
+    automake \
+    bash \
+    g++ \
+    libc6-compat \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    make \
+    nasm && npm install
+COPY . /app
 RUN npm run build
+RUN apk del --no-cache .build-deps
 
-# production stage
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+FROM nginx:alpine
+COPY --from=build /app/public /app
+COPY /config/front.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
