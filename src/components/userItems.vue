@@ -10,7 +10,7 @@
             <v-flex pa-1 xs12 sm6  md3 align-self-center
                 v-for="(item,index) of items" :key="index">
                 <show-item :item="item" :showButton="false" :showEditButton="true" :showDeleteButton="true"
-                @editItem="$refs.dialogz.mode=2;$refs.dialogz.item=item;c.log(item);$refs.dialogz.dialog=true"
+                @editItem="$refs.dialogz.mode=2;Object.assign($refs.dialogz.item,item);c.log(item);$refs.dialogz.dialog=true"
                 @deleteItem="deleteItem"></show-item>
             </v-flex>
         </v-layout>
