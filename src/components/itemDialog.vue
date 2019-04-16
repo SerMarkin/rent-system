@@ -78,12 +78,10 @@ export default {
     },
     watch :{
       dialog (){
+          this.$refs.addItem.reset()
           this.updateCategories()
       },
         mode(val){
-          if (val === 1){
-              this.$refs.addItem.reset()
-          }
         }
     },
     methods:{
