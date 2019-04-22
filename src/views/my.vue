@@ -52,6 +52,11 @@ export default {
         'userItemsz':userItems,
         'userOrdersz':userOrders
     },
+    beforeCreate(){
+      if (this.$store.state.user.role_id === 2){
+          this.$router.push('/admin')
+      }
+    },
     mounted() {
         this.activeTab = 3
         console.log(this.$route)

@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import log from './views/login.vue'
 import my from './views/my.vue';
 import reg from './views/registration.vue';
+import admin from './views/admin.vue';
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/registration',
       name: 'reg',
       component: reg
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: admin
     },
   ]
 });
