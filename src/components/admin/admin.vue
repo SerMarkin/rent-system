@@ -33,9 +33,9 @@
 </template>
 
 <script>
-    import adminCat from "../components/adminCategories";
-    import userProfile from "../components/userProfile"
-    import adminUsers from "../components/adminUsers";
+    import adminCat from "./subadmin/adminCategories";
+    import userProfile from "../profile/subprofile/userProfile"
+    import adminUsers from "./subadmin/adminUsers";
     export default {
         name: "admin",
         components:{

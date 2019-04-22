@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import log from './views/login.vue'
-import my from './views/my.vue';
-import reg from './views/registration.vue';
-import admin from './views/admin.vue';
+import log from './components/authlogin/login.vue'
+import my from './components/profile/my.vue';
+import reg from './components/authlogin/registration.vue';
+import admin from './components/admin/admin.vue';
 
 Vue.use(Router);
 

@@ -22,9 +22,9 @@
 
 
 <script>
-import item from './item'
-import dialog from './itemDialog'
-import axios from 'axios'
+import item from '../../items/item'
+import dialog from '../../items/itemDialog'
+import axios from 'axios/index'
 export default {
     name:'userItems',
     components:{

@@ -19,7 +19,7 @@
 
 <script>
 // @ is an alias to /src
-import item from '../components/item'
+import item from '../components/items/item'
 import axios from 'axios'
 export default {
   name: 'home',

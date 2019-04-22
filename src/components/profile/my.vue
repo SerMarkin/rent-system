@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import userProfile from "../components/userProfile";
-import userItems from "../components/userItems";
-import userOrders from "../components/userOrders";
+import userProfile from "./subprofile/userProfile";
+import userItems from "./subprofile/userItems";
+import userOrders from "./subprofile/userOrders";
 export default {
     name: 'myz',
     data(){

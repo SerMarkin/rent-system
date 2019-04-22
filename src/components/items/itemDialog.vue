@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import item from '../components/item'
-import axios from 'axios'
+import item from './item'
+import axios from 'axios/index'
 export default {
     name:'dialogz',
     props:{
