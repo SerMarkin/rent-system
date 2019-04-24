@@ -1,6 +1,6 @@
 <template>
     <div class="footer background_footer">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, fuga quis consequatur facilis quidem nesciunt aliquid aliquam doloremque exercitationem tempora optio sit? Omnis, cum vel delectus sed fugiat soluta asperiores!</p>
+        <p>You can contact us on <a href="https://t.me/N_Flamel">Telegram</a></p>
     </div>
 </template>
 

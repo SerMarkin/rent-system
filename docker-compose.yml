@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: front
+    ports:
+      - "80:80"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

@@ -11,7 +11,7 @@
         </v-form>
     </v-card>
     <v-card style="text-align:left;margin-top: 2%" v-if="false">
-        <h2>Safe</h2>
+        <h2>Security</h2>
         <v-text-field v-model="oldPass" label="Old password" type="password"></v-text-field>
         <v-text-field v-model="newPass" label="New password" type="password"></v-text-field>
         <v-text-field v-model="newPass_confirm" label="Confirm new password" type="password"></v-text-field>
@@ -22,7 +22,7 @@
 
 
 <script>
-    import axios from 'axios'
+    import axios from 'axios/index'
 export default {
     name:"userProfile",
     data(){
@@ -39,7 +39,7 @@ export default {
             rules: {
                 email: (val) => {
                     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return !val || re.test(String(val).toLowerCase()) || 'Uncorrected value';
+                    return !val || re.test(String(val).toLowerCase()) || 'Incorrected value';
                 },
                 required:(val)=> !!val || 'Required'
             },
@@ -50,8 +50,10 @@ export default {
 
         },
         saveChages(){
-            if (this.$refs.userData.validate()) {
-                let data = this.user
+            if (this.$refs.userData.validate()) {                
+                let data = this.user;
+                //TODO change line below when admin will be added                 
+                this.user.role_id = 1;
                 let config = {
                     headers:{
                         'Authorization':  this.$localStorage.get('token')
@@ -62,6 +64,8 @@ export default {
                     .then((resp)=>{
 
                     })
+            }else{
+                console.log('not validated');
             }
         }
     },
