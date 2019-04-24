@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    url: 'https://inno-rent.herokuapp.com' + '/',
+    url: 'localhost:3000' + '/',
     user:{},
     auth:false
   },
