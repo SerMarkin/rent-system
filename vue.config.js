@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'https://inno-rent.herokuapp.com',
+                target: 'localhost:3000',
                 pathRewrite: { '^/api': '' },
             },
         }
