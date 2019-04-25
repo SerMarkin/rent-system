@@ -6,6 +6,7 @@
             <v-card-text >
                 <h2>ITEM:</h2>
                 <h2>Name of item: {{item.title}}</h2>
+                <h2>Category: {{item.subcategory}}</h2>
                 <h2>Description: {{item.description}}</h2>
                 <h2>Price: {{item.price}} rub/day</h2>
                 <h2>Choose duration:</h2>
@@ -87,6 +88,7 @@
                     })
             },
             updateShow(item){
+                item.subcategory = this.item.subcategory
                 this.item = item
                 this.updateGeospecialSearch()
             },

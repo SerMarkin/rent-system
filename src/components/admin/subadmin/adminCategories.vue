@@ -83,7 +83,6 @@
                     }
                 }
                 const data = {
-                    category:1,
                     title : this.title_cat,
                     description: this.desc_cat
                 }

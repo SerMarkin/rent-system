@@ -165,7 +165,8 @@ export default {
                     description: this.item.description,
                     user_id: this.$store.state.user['_id'],
                     duration: this.item.duration.toString(),
-                    price: this.item.price.toString()
+                    price: this.item.price.toString(),
+                    image: this.item.image
                 }
                 let url = this.$store.state.url + 'items/'+t.item['_id']
                 axios.put(url,data,config)
