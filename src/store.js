@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    url: 'localhost:8080' + '/api',
+    url: window.origin + '/api/',
     user:{},
     auth:false
   },
