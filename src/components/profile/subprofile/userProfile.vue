@@ -59,7 +59,7 @@ export default {
                         'Authorization':  this.$localStorage.get('token')
                     }
                 }
-                let url = this.$store.state.url + 'users/' + this.user.id
+                let url = this.$store.state.url + 'users/' + this.user['_id']
                 axios.put(url,data,config)
                     .then((resp)=>{
 

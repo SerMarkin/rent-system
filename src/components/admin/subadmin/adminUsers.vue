@@ -6,15 +6,15 @@
         >
             <template slot="items" slot-scope="props">
                 <tr>
-                    <td>{{ props.item.id }}</td>
+                    <td>{{ props.item['_id'] }}</td>
                     <td>{{ props.item.name }}</td>
                     <td>{{ props.item.email }}</td>
                     <td>{{ props.item.phone }}</td>
                     <td class="text-xs-left">
-                        <v-btn v-if="props.item.role_id === 1" icon @click="Block(props.item.id,0)">
+                        <v-btn v-if="props.item.role_id === 1" icon @click="Block(props.item['_id'],0)">
                             <v-icon>cancel</v-icon>
                         </v-btn>
-                        <v-btn v-else icon @click="Block(props.item.id,1)">
+                        <v-btn v-else icon @click="Block(props.item['_id'],1)">
                             <v-icon>check</v-icon>
                         </v-btn>
                     </td>

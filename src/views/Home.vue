@@ -5,7 +5,7 @@
             :items="categories"
             v-model="current_cat"
             item-text="title"
-            item-value="id"
+            item-value="_id"
             label="Categories"
             @input="updatePag"
     ></v-select>
@@ -51,7 +51,7 @@ export default {
         paginator:{
             total: 7992,
             per_page: 15,
-            current_page: 2,
+            current_page: 1,
             total_pages: 533
         },
       current_cat:0
@@ -63,7 +63,7 @@ export default {
       axios.get(this.$store.state.url + 'items')
               .then((resp)=>{
                 console.log(resp)
-                t.items = Object.assign({},resp.data.data.list.filter((item)=>item.user_id !== t.$store.state.user.id))
+                t.items = Object.assign({},resp.data.data.list.filter((item)=>item.user_id !== t.$store.state.user['_id']))
                   t.paginator = resp.data.data.paginator
               })
     },
@@ -77,7 +77,7 @@ export default {
       axios.get(this.$store.state.url + 'subcategories/'+this.current_cat+'/items?page='+this.paginator.current_page)
               .then((resp)=>{
                 console.log(resp)
-                this.items = Object.assign({},resp.data.data.list.filter((item)=>item.user_id !== this.$store.state.user.id))
+                this.items = Object.assign({},resp.data.data.list.filter((item)=>item.user_id !== this.$store.state.user))
                   this.paginator = resp.data.data.paginator
               })
 

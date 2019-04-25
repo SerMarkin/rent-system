@@ -1,7 +1,7 @@
 <template>
 <v-card class="item_card">
     <v-card-title class="head">{{item.title}}</v-card-title>
-    <v-btn icon v-if="showDeleteButton" @click="$emit('deleteItem',item.id)">
+    <v-btn icon v-if="showDeleteButton" @click="$emit('deleteItem',item['_id'])">
             <v-icon >close</v-icon>
     </v-btn>
     <img v-if="!!item.image" :src="item.image" class="image_item">

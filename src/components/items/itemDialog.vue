@@ -18,7 +18,7 @@
                             <v-list-tile
                                     v-for="(itemCat, index) in categories"
                                     :key="index"
-                                    @click="item.subcategory_id = itemCat.id;show_cat = index"
+                                    @click="item.subcategory_id = itemCat['_id'];show_cat = index"
                                     style="background: white"
                             >
                                 <v-list-tile-title>{{ itemCat.title }}</v-list-tile-title>
@@ -114,13 +114,13 @@ export default {
                         let k = 0;
                         t.categories.forEach((cat)=> {
 
-                            if (cat.id == t.item.subcategory_id)
+                            if (cat['_id'] == t.item.subcategory_id)
                                 t.show_cat = k
                             else
                                 k += 1
                         })
                     }else{
-                        t.item.subcategory_id = t.categories[t.show_cat].id
+                        t.item.subcategory_id = t.categories[t.show_cat]['_id']
                     }
                 })
         },
@@ -136,7 +136,7 @@ export default {
                     title: this.item.title,
                     subcategory_id : this.item.subcategory_id,
                     description: this.item.description,
-                    user_id: this.$store.state.user.id,
+                    user_id: this.$store.state.user['_id'],
                     duration: this.item.duration.toString(),
                     price: this.item.price.toString(),
                     image: this.item.image
@@ -163,11 +163,11 @@ export default {
                     title: this.item.title,
                     subcategory_id : this.item.subcategory_id,
                     description: this.item.description,
-                    user_id: this.$store.state.user.id,
+                    user_id: this.$store.state.user['_id'],
                     duration: this.item.duration.toString(),
                     price: this.item.price.toString()
                 }
-                let url = this.$store.state.url + 'items/'+t.item.id
+                let url = this.$store.state.url + 'items/'+t.item['_id']
                 axios.put(url,data,config)
                     .then((resp)=>{
                         t.$emit('update')

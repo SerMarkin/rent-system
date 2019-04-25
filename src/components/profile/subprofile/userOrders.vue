@@ -168,7 +168,7 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.myOrders.push(
-                            {id:item.id,
+                            {id:item['_id'],
                                 duration:item.duration,
                                 name:item.description,
                                 date_in:date1.toLocaleDateString('ru-ru'),
@@ -197,7 +197,7 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.ordersUsers.push(
-                            {id:item.id,
+                            {id:item['_id'],
                                 duration:item.duration,
                                 name:item.description,
                                 date_in:date1.toLocaleDateString('ru-ru'),
@@ -220,7 +220,7 @@ GET /my-orders/rent*/
                     'Authorization':  this.$localStorage.get('token')
                 }
             }
-            let url = this.$store.state.url + 'orders/' + item.id
+            let url = this.$store.state.url + 'orders/' + item['_id']
             let data = {
                 duration: item.duration,
                 description: item.name,

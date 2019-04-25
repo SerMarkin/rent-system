@@ -75,8 +75,8 @@
                 };
                 let url = this.$store.state.url + 'orders'
                 let data = {
-                    item_id: item.id,
-                    user_id: this.$store.state.user.id,
+                    item_id: item['_id'],
+                    user_id: this.$store.state.user['_id'],
                     duration: item.duration,
                     description: item.title,
                     status:1
@@ -97,84 +97,84 @@
                         'Authorization':  this.$localStorage.get('token')
                     }
                 };
-                const url = this.$store.state.url + 'items/' + this.item.id + '/' + 'similar'
+                const url = this.$store.state.url + 'items/' + this.item['_id'] + '/' + 'similar'
                 axios.get(url,config)
                     .then((response)=>{
                         this.nearItems = response.data.data
                     })
                     .catch((err)=>{
-                        this.nearItems = [
-                            {
-                                "item": {
-                                    "id": "506863db8177d2271bb702edda933185",
-                                    "name": "Huawei Mate 20",
-                                    "price": "177",
-                                    "score": 0,
-                                    "item": {
-                                        "title": "Huawei Mate 20",
-                                        "description": "Atque aut laudantium eius.",
-                                        "price": "177",
-                                        "duration": 4,
-                                        "image": null,
-                                        "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
-                                        "user_id": "b8b92f4037443ea1691e4e368bedc85b",
-                                        "order_ids": [],
-                                        "updated_at": null,
-                                        "created_at": null,
-                                        "_id": "506863db8177d2271bb702edda933185",
-                                        "_rev": "1-5336ba9c47cb2e881b60d7a41053da07",
-                                        "type": "Item"
-                                    }
-                                }
-                            },
-                            {
-                                "item": {
-                                    "id": "b8b92f4037443ea1691e4e368bbb2e91",
-                                    "name": "iPhone 5S",
-                                    "price": "177",
-                                    "score": 0,
-                                    "item": {
-                                        "title": "iPhone 5S",
-                                        "description": "Qui sunt nulla omnis.",
-                                        "price": "177",
-                                        "duration": 4,
-                                        "image": null,
-                                        "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
-                                        "user_id": "b8b92f4037443ea1691e4e368bf0aef9",
-                                        "order_ids": [],
-                                        "updated_at": null,
-                                        "created_at": null,
-                                        "_id": "b8b92f4037443ea1691e4e368bbb2e91",
-                                        "_rev": "1-f45275100d0eb7929f8ab3cbbc293c06",
-                                        "type": "Item"
-                                    }
-                                }
-                            },
-                            {
-                                "item": {
-                                    "id": "506863db8177d2271bb702edda4a9a1d",
-                                    "name": "OnePlus 6",
-                                    "price": "178",
-                                    "score": 1,
-                                    "item": {
-                                        "title": "OnePlus 6",
-                                        "description": "Ut aut adipisci maiores.",
-                                        "price": "178",
-                                        "duration": 6,
-                                        "image": null,
-                                        "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
-                                        "user_id": "b8b92f4037443ea1691e4e368bf06de2",
-                                        "order_ids": [],
-                                        "updated_at": null,
-                                        "created_at": null,
-                                        "_id": "506863db8177d2271bb702edda4a9a1d",
-                                        "_rev": "1-7afe7f07152f0c91dd40c9456837374c",
-                                        "type": "Item"
-                                    }
-                                }
-                            }
-                        ]
-                        console.log(this.nearItems)
+                        // this.nearItems = [
+                        //     {
+                        //         "item": {
+                        //             "id": "506863db8177d2271bb702edda933185",
+                        //             "name": "Huawei Mate 20",
+                        //             "price": "177",
+                        //             "score": 0,
+                        //             "item": {
+                        //                 "title": "Huawei Mate 20",
+                        //                 "description": "Atque aut laudantium eius.",
+                        //                 "price": "177",
+                        //                 "duration": 4,
+                        //                 "image": null,
+                        //                 "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
+                        //                 "user_id": "b8b92f4037443ea1691e4e368bedc85b",
+                        //                 "order_ids": [],
+                        //                 "updated_at": null,
+                        //                 "created_at": null,
+                        //                 "_id": "506863db8177d2271bb702edda933185",
+                        //                 "_rev": "1-5336ba9c47cb2e881b60d7a41053da07",
+                        //                 "type": "Item"
+                        //             }
+                        //         }
+                        //     },
+                        //     {
+                        //         "item": {
+                        //             "id": "b8b92f4037443ea1691e4e368bbb2e91",
+                        //             "name": "iPhone 5S",
+                        //             "price": "177",
+                        //             "score": 0,
+                        //             "item": {
+                        //                 "title": "iPhone 5S",
+                        //                 "description": "Qui sunt nulla omnis.",
+                        //                 "price": "177",
+                        //                 "duration": 4,
+                        //                 "image": null,
+                        //                 "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
+                        //                 "user_id": "b8b92f4037443ea1691e4e368bf0aef9",
+                        //                 "order_ids": [],
+                        //                 "updated_at": null,
+                        //                 "created_at": null,
+                        //                 "_id": "b8b92f4037443ea1691e4e368bbb2e91",
+                        //                 "_rev": "1-f45275100d0eb7929f8ab3cbbc293c06",
+                        //                 "type": "Item"
+                        //             }
+                        //         }
+                        //     },
+                        //     {
+                        //         "item": {
+                        //             "id": "506863db8177d2271bb702edda4a9a1d",
+                        //             "name": "OnePlus 6",
+                        //             "price": "178",
+                        //             "score": 1,
+                        //             "item": {
+                        //                 "title": "OnePlus 6",
+                        //                 "description": "Ut aut adipisci maiores.",
+                        //                 "price": "178",
+                        //                 "duration": 6,
+                        //                 "image": null,
+                        //                 "subcategory_id": "b8b92f4037443ea1691e4e368bd538b8",
+                        //                 "user_id": "b8b92f4037443ea1691e4e368bf06de2",
+                        //                 "order_ids": [],
+                        //                 "updated_at": null,
+                        //                 "created_at": null,
+                        //                 "_id": "506863db8177d2271bb702edda4a9a1d",
+                        //                 "_rev": "1-7afe7f07152f0c91dd40c9456837374c",
+                        //                 "type": "Item"
+                        //             }
+                        //         }
+                        //     }
+                        // ]
+                        // console.log(this.nearItems)
                     })
 
             }

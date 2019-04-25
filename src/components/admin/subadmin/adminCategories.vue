@@ -11,7 +11,7 @@
                 <tr>
                     <td>{{ props.item.title }}</td>
                     <td class="text-xs-left">
-                        <v-btn icon @click="deleteCat(props.item.id)">
+                        <v-btn icon @click="deleteCat(props.item['_id'])">
                             <v-icon>cancel</v-icon>
                         </v-btn>
                     </td>
