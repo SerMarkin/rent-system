@@ -7,6 +7,7 @@
     <img v-if="!!item.image" :src="item.image" class="image_item">
     <img v-else src="../../assets/nophoto.png" class="image_item">
     <v-card-text class="descr_item">
+        <p>{{item.subcategory}}</p>
     <p>{{item.description}}</p>
     </v-card-text>
 
