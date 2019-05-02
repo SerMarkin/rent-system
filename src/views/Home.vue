@@ -74,7 +74,7 @@ export default {
           'Authorization':  this.$localStorage.get('token')
         }
       }
-      axios.get(this.$store.state.url + 'subcategories/'+this.current_cat+'/items?page='+this.paginator.current_page)
+      axios.get(this.$store.state.url + 'subcategories/'+this.current_cat+'/items?page='+page)
               .then((resp)=>{
                 console.log(resp)
                 this.items = Object.assign({},resp.data.data.list.filter((item)=>item.user_id !== this.$store.state.user))
