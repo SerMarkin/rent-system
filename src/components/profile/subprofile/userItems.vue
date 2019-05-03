@@ -3,7 +3,7 @@
         <h1 style="text-align:center" >This is my items page</h1>
         <show-dialog ref="dialogz" @update="updateItems()"></show-dialog>
         <div style="display:flex; justify-content:center">
-            <v-btn @click="$refs.dialogz.mode=1;$refs.dialogz.dialog=true">Add item</v-btn>
+            <v-btn @click="$refs.dialogz.mode=1;$refs.dialogz.dialog=true" v-if="$store.state.user.role_id !== 0">Add item</v-btn>
         </div>
 
         <v-layout row wrap>

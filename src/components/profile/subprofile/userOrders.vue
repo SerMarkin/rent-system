@@ -87,7 +87,7 @@ export default {
                 [{title:'Item returned by lessee',icon:'call_received',method:6,disabled:false}],
                 [{title:'Item returned by lessee',icon:'cell_wifi',method:6,disabled:false}],
                 [{title:'Item returned by lessee',icon:'chat_bubble',method:6,disabled:false}],
-                [{title:'Item returned by lessee',icon:'chat_bubble_outline',method:6,disabled:true}],
+                [{title:'Item returned by lessee',icon:'check',method:6,disabled:true}],
                 [{title:'',icon:'clear_all',method:this.test1,disabled:true}],
                 [{title:'',icon:'dialer_sip',method:this.test1,disabled:true}],
             ],
@@ -97,7 +97,7 @@ export default {
                 [{title:'Item returned by lessee',icon:'call_received',method:4,disabled:false}],
                 [{title:'',icon:'cell_wifi',method:this.test1,disabled:true}],
                 [{title:'',icon:'chat_bubble',method:this.test1,disabled:true}],
-                [{title:'',icon:'chat_bubble_outline',method:this.test1,disabled:true}],
+                [{title:'',icon:'check',method:this.test1,disabled:true}],
                 [{title:'',icon:'clear_all',method:this.test1,disabled:true}],
                 [{title:'',icon:'dialer_sip',method:this.test1,disabled:true}],
             ],
@@ -127,25 +127,25 @@ export default {
             ],
 
             myOrders:[//Do we need this?)
-                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
+               /* {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
                 {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
                 {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'3'},
                 {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'4'},
                 {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'5'},
                 {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'6'},
                 {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'7'},
-                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'8'}
+                {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'8'}*/
             ],
             ordersUsers:[
-                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
-                {name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
+                /*{name:'Название объектa2',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'2'},
                 {name:'Название объекта3',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'3'},
                 {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'4'},
                 {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'5'},
                 {name:'Название объекта4',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'6'},
                 {name:'Название объекта5',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'7'},
+                {name:'Название объекта1',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'1'},
                 {name:'Название объекта6',date_in:'01.12.2013',date_out:'02.12.2013',total_price:'3000',status:'8'}
-            ]
+            */]
         }
     },
     methods:{
@@ -168,7 +168,7 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.myOrders.push(
-                            {id:item['_id'],
+                            {id:item['id'],
                                 duration:item.duration,
                                 name:item.description,
                                 date_in:date1.toLocaleDateString('ru-ru'),
@@ -197,7 +197,7 @@ GET /my-orders/rent*/
                         let date1 = new Date(item.created_at)
                         let date2 = new Date(+date1 + item.duration*24*60*60*1000)
                         t.ordersUsers.push(
-                            {id:item['_id'],
+                            {id:item['id'],
                                 duration:item.duration,
                                 name:item.description,
                                 date_in:date1.toLocaleDateString('ru-ru'),
@@ -220,6 +220,7 @@ GET /my-orders/rent*/
                     'Authorization':  this.$localStorage.get('token')
                 }
             }
+            console.log(item,state)
             let url = this.$store.state.url + 'orders/' + item['id']
             let data = {
                 duration: item.duration,
