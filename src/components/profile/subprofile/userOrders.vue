@@ -220,7 +220,7 @@ GET /my-orders/rent*/
                     'Authorization':  this.$localStorage.get('token')
                 }
             }
-            let url = this.$store.state.url + 'orders/' + item['_id']
+            let url = this.$store.state.url + 'orders/' + item['id']
             let data = {
                 duration: item.duration,
                 description: item.name,
